@@ -1,0 +1,389 @@
+\documentclass[12pt]{article}  
+
+%%%%%%%% PREÁMBULO %%%%%%%%%%%%
+\title{Propuesta grado}
+%\usepackage[spanish]{babel}%Indica que escribiermos en español
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc} %Indica qué codificación se está usando ISO-8859-1(latin1)  o utf8  
+\usepackage{amsmath} % Comandos extras para matemáticas (cajas para ecuaciones,
+% etc)
+\usepackage{amssymb} % Simbolos matematicos (por lo tanto)
+\usepackage{graphicx} % Incluir imágenes en LaTeX
+\usepackage{color} % Para colorear texto
+\usepackage{subfigure} % subfiguras
+\usepackage{float} %Podemos usar el especificador [H] en las figuras para que se
+% queden donde queramos
+\usepackage{capt-of} % Permite usar etiquetas fuera de elementos flotantes
+% (etiquetas de figuras)
+\usepackage{sidecap} % Para poner el texto de las imágenes al lado
+	\sidecaptionvpos{figure}{c} % Para que el texto se alinie al centro vertical
+\usepackage{caption} % Para poder quitar numeracion de figuras
+\usepackage{commath} % funcionalidades extras para diferenciales, integrales,
+% etc (\od, \dif, etc)
+\usepackage{graphicx, amsmath, amsthm, latexsym, amssymb, amsfonts, epsfig, float, enumerate, color, listings,  graphicx, fancyhdr}
+\usepackage{braket}
+
+\usepackage{cancel} % para cancelar expresiones (\cancelto{0}{x})
+\usepackage[table,xcdraw]{xcolor} %Agregar color a los cuadros
+\usepackage{anysize} 					% Para personalizar el ancho de  los márgenes
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+
+\newtcbox{\mymath}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=blue!30!black,
+    colback=green!30, boxrule=1pt,
+    #1}
+
+
+\marginsize{2cm}{2cm}{2cm}{2cm} % Izquierda, derecha, arriba, abajo
+
+\usepackage{appendix}
+\renewcommand{\appendixname}{Apéndices}
+\renewcommand{\appendixtocname}{Apéndices}
+\renewcommand{\appendixpagename}{Apéndices} 
+
+% Para que las referencias sean hipervínculos a las figuras o ecuaciones y
+% aparezcan en color
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue]{hyperref}
+%\usepackage{hyperref} 
+% Para agregar encabezado y pie de página
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Universidad Nacional de Colombia} %encabezado izquierda
+\fancyhead[R]{\footnotesize Sede Bogotá}   % dereecha
+%\fancyfoot[R]{\footnotesize Nombre y Apellido}  % Pie derecha
+\fancyfoot[C]{\thepage}  % centro
+%\fancyfoot[L]{\footnotesize Sesquicentenario}  %izquierda
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\usepackage{listings} % Para usar código fuente
+\definecolor{dkgreen}{rgb}{0,0.6,0} % Definimos colores para usar en el código
+\definecolor{gray}{rgb}{0.5,0.5,0.5} 
+% configuración para el lenguaje que queramos utilizar
+\lstset{language=Matlab,
+   keywords={break,case,catch,continue,else,elseif,end,for,function,
+      global,if,otherwise,persistent,return,switch,try,while},
+   basicstyle=\ttfamily,
+   keywordstyle=\color{blue},
+   commentstyle=\color{red},
+   stringstyle=\color{dkgreen},
+   numbers=left,
+   numberstyle=\tiny\color{gray},
+   stepnumber=1,
+   numbersep=10pt,
+   backgroundcolor=\color{white},
+   tabsize=4,
+   showspaces=false,
+   showstringspaces=false}
+
+\newcommand{\sen}{\operatorname{\sen}}	% Definimos el comando \sen para el seno
+%en español
+
+
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{} % Refrexcnes
+
+\title{Propuesta de Proyecto de Grado}
+
+%%%%%%%% TERMINA PREÁMBULO %%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+																					%%%
+\begin{center}																		%%%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}									%%%\left
+ 																					%%%
+\begin{minipage}{0.48\textwidth} %\begin{flushleft}
+\centering
+\includegraphics[scale = 0.4]{EscudoU.jpg}
+%\end{flushleft}
+\end{minipage}
+%\begin{minipage}{0.48\textwidth} \begin{flushright}
+%\includegraphics[scale = 0.45]{Sesqui.jpg}
+%\end{flushright}\end{minipage}
+
+													 								%%%
+\vspace*{0.5cm}								%%%
+																					%%%	
+\textsc{\huge Universidad Nacional\\ \vspace{5px} de Colombia}\\[1.5cm]	
+
+\textsc{\Large Master of Science in Physics Thesis  }\\[1.5cm]													%%%
+
+%%%
+    																				%%%
+ 			\vspace*{1cm}																		%%%
+																					%%%
+\HRule \\[0.4cm]																	%%%
+{ \huge \bfseries  Quantum Trajectories in non-Markovian system via the reaction coordinate mapping.}\\[0.4cm]	%%%
+ 																					%%%
+\HRule \\[1.5cm]																	%%%
+ 																				%%%
+																					%%%
+\begin{minipage}{0.46\textwidth}													%%%
+\begin{flushleft} \large															%%%
+\emph{Autor:}\\	
+Luis Eduardo Herrera Rodríguez\\
+%Código: 12345\\
+C.c: 1049650402\\ 
+Email: leherrerar@unal.edu.co
+%%%
+			%\vspace*{2cm}	
+            													%%%
+										 						%%%
+\end{flushleft}																		%%%
+\end{minipage}		
+																%%%
+\begin{minipage}{0.52\textwidth}		
+\vspace{-0.6cm}											%%%
+\begin{flushright} \large															%%%
+\emph{Director:} \\																	%%%
+Carlos Leonardo Viviescas\\
+Physics PhD.	\\
+												%%%
+\end{flushright}																	%%%
+\end{minipage}	
+\vspace*{1cm}
+%\begin{flushleft}
+ 	
+%\end{flushleft}
+%%%
+ 		\flushleft{\textbf{\Large Facultad de Ciencia- Física}	}\\																		%%%
+\vspace{2cm} 																				
+\begin{center}																					
+{\large \today}																	%%%
+ 			\end{center}												  						
+\end{center}							 											
+																					
+\newpage																		
+%%%%%%%%%%%%%%%%%%%% TERMINA PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents 
+
+\newpage
+
+%\section{Proponentes.}
+
+%\begin{tabular}{cc}
+%Luis Eduardo Herrera Rodríguez  & \parbox[t]{20cm}{Estudiante de Posgrado Maestría en Física- Investigación }\\
+%Carlos Leonardo Viviescas  & \parbox[t]{20cm}{Director }
+%\end{tabular}
+
+
+\section*{Abstract.} 
+
+
+%The quantum mechanics, is undoubtedly the most accurate theory in the description of the microscopic world. Sample of this fact is participation of the quantum mechanics different areas such as in the modeling the chemistry of biomolecules and design nano structures for applications\cite{RC_addeso,molecular_int,nano_int}, where  the understanding of the dynamics of the quantum systems is essential. Unfortunately quantum systems are always in contact with the environment, making challenging the description of quantum systems. 
+
+
+
+
+
+
+%A deep understanding of the  dynamics has been obtained for the Markovian case \cite{breuer}, in which the coupling between the system and the environment is weak and the feedback from the enviroment to the system can be neglected, where general analytic results are available. A more complex scenario is found in the non-Markovian regime, which typically arises due to strong coupling and similar time scales of system and bath evolution. In this direction there is no a full understanding and treatment. Although some non-Markovian strategies exist, they typically lack simple results of general validity \cite{no_markovian_review}. A connection between the 2 situations is the known reaction coordinate map method for some cases.
+
+%Understanding and controlling the dynamics in open systems may have strong implications in quantum computing, quantum simulations, secure quantum communication, cryptography, quantum metrology, without mention in quantum foundations \cite{open_systems_aolita}.
+
+%The aim of this project is to apply the quantum trajectory method to  study the dynamics of a two level quantum open system in the framework of the reaction coordinate map in the non-markovian and strong coupling regime. The reaction coordinate map is a method  applied to study the dynamics and thermodynamic behaviour of small systems beyond the weak coupling and Markovian approximation, which is different in spirit from conventional approaches. The technique is based in redefine the full Hamiltonian partitions(system + environment + interaction), in a way such the new system (supersystem) is weakly coupled and in markovian regime with the new environment. To achieve this, a  reservoir degree of freedom   that accounts the non- markovianity (reaction coordinate) is incorporated in the system. This method is general since it could be applied to any system (classical, quantum, time dependent) linearly coupled to an harmonic oscillator reservoir \cite{Gernot_thermodynamics}. The remaining residual reservoir degrees of freedom are  weakly coupled with the new supersystem and traced out in the usual perturbative way. The markovian dynamics allows the use of the Master equation and quantum trajectory method to evolve the state of the supersystem with quantum jumps at each time step, finding the dynamics of the supersystem (density matrix). To achieve the original objective, the original system dynamics, it's enough to trace out the the reaction coordinate.  This implementation method will be tested in 2 different systems: A 2 level system and an quantum dot. 
+
+
+\newpage
+
+\section{Introduction}
+
+In the last two decades, experimental advances in quantum physics have made possible to prepare and manipulate quantum  systems  in   large  and  complex  ways.   Nowadays,  tens  of  ions  can  be  trapped  and  transported  at will in microtraps, quantum  trajectories  can  be  observed  using  superconducting  qubits  in  microwave  cavities, optical lattices are used to interfere clouds of cold bosons, and nanoparticles can be levitated and cooled to low temperatures\cite{quantum_trajectories,ions,ultracold_atoms,nanoparticles_levitated}.
+
+
+This make quantum information processing and quantum technologies  one of the most promising applications of quantum theory, but one of the biggest challenges is to have detailed and specific control over each and all of the constituents of a quantum system. This difficulties arises form the fact that the system  couples  with his environment, which usually one only have partial control of it, changing the dynamics of the interest system, in result the dynamics is difficult to get due to the effect of the environment on the system. To overcome this problem and get the dynamics of the system, taking in account the irreversible and non-unitary processes (like dissipation, decoherence or measurement process), one have to employ a master equation description. The Limbland equation is the most general master equation for open quantum systems, but is restricted to the regime of weak coupling and Markovian environment.  
+
+
+Meantime, the macroscopic thermodynamics and classical statistical physics have move towards systems with smaller scales, aiming to construct a new thermodynamic framework that has in account  the  finite  size  effects,  the  non-equilibrium  dynamics, the quantum properties and goes beyond the conventional regime of validity of macroscopic  thermodynamics.  
+%%%%%%%%%%%5Problem %%%%
+
+
+\section{Dissipative systesm: Caldeira Legget Hamiltonian}
+full fish
+Here we talk about the  Caldeira Legget Hamiltonian 
+
+\section{The Reaction Coordinate map with classicl variables}
+Here we make the RC mapping for $q$ and $p$
+
+
+\section{The spin Boson model with a two level system }
+ we have the model 
+\begin{equation}
+    H=H_s + S \sum_{k} \left( h_k a_k + h_k^* a_k^{\dagger} \right) + \sum_k \omega_k a_k^{\dagger} a_k
+\label{Original H}    
+\end{equation} 
+
+Where $H_s$ is the system which one is interested in his dynamics and is coupled to the bosonic bath, S denotes a dimensionless operator that acts only in the system $(S= S \otimes \mathbb{I})$, $a_k^{\dagger} (a_k)$ are the creation (annihilation) operator for the bosonic bath with modes frequencies $\omega_k$, which are coupled linearly with the  system with strength $h_k$, and fulfill the bosonic commutation relations $ \left[ a_k , a_{k'}^{\dagger} \right] = \delta_{k,k'}  $.
+
+
+Here talk about the spectral density.
+
+\begin{equation}
+    \Gamma(\omega) = 2 \pi \sum_{k} \abs{h_k}^2 \delta(\omega-\omega_k)
+\end{equation}
+
+\section{Quantum dot coupled to 2 baths }
+
+\section{The Reaction Coordinate map with bosonic creation and anhilation operators }
+
+We desire a map such that the new mapped Hamiltonian has the form:
+ \begin{equation}
+H=H_s + \lambda S \left( b+ b^{\dagger} \right) +  \Omega b^{\dagger} b + (b+b^{\dagger}) \sum_{k \neq 1} \left( H_k b_k + H_k^* b_k^{\dagger} \right) + \sum_{k \neq 1} \Omega_k b_k^{\dagger} b_k   
+\end{equation}
+
+where  the $b_k^{\dagger} (b_k)$ are the  creation (annihilation) operator for the new bosonic bath with modes frequencies $\Omega_k$, which are coupled linearly with the  system with strength $H_k$, and fulfill the bosonic commutation relations $ [ b_k , b_{k'}^{\dagger} ] = \delta_{k,k'}  $. To achieve this purpose the map can be done by applying a Bogoliubov transformation, where the annihilation operators $a_k$ are linearly transformed into  new modes $b_k$: 
+
+\begin{equation}
+   a_k = u_{k1} b_1 +\sum_{q\neq 1} u_{kq} b_q + v_{k1} b_1^{\dagger}+ \sum_{q\neq 1} v_{kq} b_q^{\dagger},
+\end{equation}
+
+The distinction is made with respect $b_1$ because this mode will be selected as the reaction coordinate $(b=b_1)$. In order to preserve the bosonic commutations relation, the Bogoliubov transformation should be sympetic, i.e. the matirces $\mathbf{U}$  and $ \mathbf{V}$ with complex  coeffients $u_kq$ and  $v_kq$ respectively obey  $\mathbf{U}\mathbf{U}^{\dagger}- \mathbf{V}\mathbf{V}^{\dagger}= \mathbb{I}$ and $\mathbf{U}\mathbf{U}^T-\mathbf{V}\mathbf{U}^T= \mathbf{0} $. The construction of the sympletic tranformation can be donde with an orthogonal tranformation such the matrices elements are :
+
+\begin{equation}
+    u_{kq} = \frac{1}{2} \left( \frac{\bar{a_k}}{ \bar{b_q}} + \frac{\bar{b_k}}{ \bar{a_q}}  \right) \Lambda_{kq}, \hspace{2cm}  v_{kq} = \frac{1}{2} \left( \frac{\bar{a_k}}{ \bar{b_q}} - \frac{\bar{b_k}}{ \bar{a_q}}  \right) \Lambda_{kq},
+\end{equation}
+
+where  $\bar{a_k}$ and $\bar{b_k}$ are real valued and $\Lambda_{kq}$ is a orthogonal matrix, imposing $\sum_q \Lambda_{kq} \Lambda_{kq'} = \delta_{k,k'.}$
+
+%%% Why some tranformation are sympletics and others are unitary, why the diference, what is conserved in each case, which condition ins bigger.  
+
+For characterizin the new bath is need the new spectral density, following the convention we have:
+
+\begin{equation}
+    \Gamma^{(1)} (\omega) = 2\pi \sum_k \abs{H_k}^2 \delta (\omega- \Omega_k).
+\end{equation}
+
+
+For this bosonic map (phonon mapping) we can choose $\lamda > 0 $, since we can introduce a phase in the $b_k$ modes leading to a phase change in the $H_k$ coefficient, in the same fashion we can define  $h_k$ to be real value coefficient. Then the mapping take the form:
+
+
+\begin{equation}
+    u_{kq} = \frac{1}{2} \left( \sqrt{ \frac{\omega_k}{\Omega_k}} + \sqrt{ \frac{\Omega_k}{\omega_k}}  \right) \Lambda_{kq}, \hspace{2cm}  v_{kq} = \frac{1}{2} \left( \sqrt{ \frac{\omega_k}{\Omega_k}} - \sqrt{ \frac{\Omega_k}{\omega_k}}  \right) \Lambda_{kq},
+\end{equation}
+
+Then the last term of equation \ref{Original H} in transformed as:
+
+\begin{multline}
+\hspace{7.5cm} \sum_k \omega_k a_k^{\dagger} a_k  =\\
+\sum_k \omega_k  \left[ u_{k1} b^{\dagger} +\sum_{q\neq 1} u_{kq} b_q^{\dagger} + v_{k1} b+ \sum_{q\neq 1} v_{kq} b_q \right] \left[ u_{k1} b_1 +\sum_{q\neq 1} u_{kq} b_q + v_{k1} b_1^{\dagger}+ \sum_{q\neq 1} v_{kq} b_q^{\dagger} \right]
+\label{third term}
+\end{multline}
+
+We will separate the terms of \ref{third term} depending if they are related with the RC, and for the moment we will not take the sumatory over $k$. The terms related with the RC are:
+
+\begin{multline}
+    u_{k1} u_{k1} b^{\dagger} b + \sum_{q \neq 1 } u_{k1 } u_{kq } b^{\dagger} b_q + u_{k1} v_{k1} b^{\dagger} b^{\dagger} + \sum_{q \neq 1 } u_{k1 } v_{kq } b^{\dagger} b_q^{\dagger} + \\
+     v_{k1} u_{k1} b b + \sum_{q \neq 1 } v_{k1 } u_{kq } b b_q + v_{k1} v_{k1} b b^{\dagger} + \sum_{q \neq 1 } v_{k1 } v_{kq } b b_q^{\dagger} + \\
+     \sum_{q \neq 1 } u_{k1 } u_{kq } b_q^{\dagger} b + \sum_{q \neq 1 } v_{k1 } u_{kq } b_q^{\dagger} b^{\dagger} + \sum_{q \neq 1 } u_{k1 } v_{kq } b_q b + \sum_{q \neq 1 } v_{k1 } v_{kq } b_q b^{\dagger},
+\end{multline}
+and the terms without the RC:
+
+\begin{eqnarray}
+\sum_{q,q' \neq 1} u_{kq } u_{kq' }  b_{q'}^{\dagger} b_q + \sum_{q,q' \neq 1} u_{kq' } v_{kq }  b_{q'}^{\dagger} b_q^{\dagger}  + \sum_{q,q' \neq 1} v_{kq' } u_{kq }  b_{q'} b_q + \sum_{q,q' \neq 1} v_{kq' } v_{kq }  b_{q'} b_q ^{\dagger} 
+\label{terms wihtout rc}
+\end{eqnarray}
+
+Now we will work with the terms without the RC, usign the commutation relation  for the new modes $[b_q,b_{q'}^{\dagger}] =\delta_{qq'} $ we have that equation \ref{terms wihtout rc} becomes :
+
+\begin{equation}
+    \underbrace{ \sum_{q,q' \neq 1}   \left(  u_{kq } u_{kq' }+ v_{kq } v_{kq' }  \right) b_{q'}^{\dagger} b_q }_{part\ 1} +  \overbrace{ \sum_{q,q' \neq 1} u_{kq'} v_{kq} \left(  b_{q'}^{\dagger} b_q^{\dagger}  +  b_q b_{q'}  \right) }^{part\ 2} + \underbrace{ \sum_{q,q' \neq 1} v_{kq'} v_{kq} \delta_{qq'} }_{part\ 3}
+\end{equation}
+
+Taking the sum over $k$ we can impose that the new coordiantes(operators) will be in normal form for part 1:
+
+\begin{equation}
+    \sum_k  \omega_k \sum_{q,q' \neq 1}   \left(  u_{kq } u_{kq' }+ v_{kq } v_{kq' }  \right) b_{q'}^{\dagger} b_q = \sum_{q \neq 1} \Omega_q  b_{q'}^{\dagger} b_q,
+\end{equation}
+
+leading to the condition 
+\begin{equation}
+    \Omega_q \delta_{qq'} = \sum_k  \omega_k  \left(  u_{kq } u_{kq' }+ v_{kq } v_{kq' }  \right)
+\end{equation}
+whitch can be resume  in: 
+
+\begin{empheq}[box=\mymath]{equation}
+    \Omega_q \Omega_{q'} \delta_{qq'} = \sum_k  \omega_k ^2 \Lambda_{kq} \Lambda_{kq'}
+    \label{}
+\end{empheq}
+
+
+Taking the sum over $k$ for the second part and using the orthogonality condition $\sum_k \Lambda_{kq} \Lambda_{kq'} = \delta_{qq'}$, one get:
+
+
+
+\begin{equation}
+    \sum_k \omega_k  \sum_{q,q' \neq 1} u_{kq'} v_{kq} \left(  b_{q'}^{\dagger} b_q^{\dagger}  +  b_q b_{q'}  \right) =   \sum_{q,q' \neq 1} \frac{1}{4} \frac{1}{\sqrt{\Omega_q \Omega_{q'}}} \left( \Omega_q -\Omega_{q'} \right) \sum_k \omega_k  \Lambda_{kq} \Lambda_{kq'},
+\end{equation}
+
+changing the index $q \rightarrow q'$, is easy to see that this term is cero. 
+
+
+
+
+
+And the part 3 using $\sum_k \omega_k^2 \Lambda_{kq}^2= \Omega_q^2$ and $\sum_k \Lambda_{kq}^2 =1$:
+
+\begin{equation}
+    \sum_k \omega_k  \sum_{q,q' \neq 1} v_{kq'} v_{kq} \delta_{qq'} = \frac{1}{2} \sum_{q \neq 1} \left( \Omega_q - \sum_k \omega_k \Lambda_{kq}^2 \right)
+\end{equation}
+
+%%%%This term should be cero 
+
+
+
+\section{The Reaction Coordinate map with fermionic  creation and annihilation operators }
+
+\section{Master Equation}
+
+\section{Quantum Trajectories}
+
+\section{Non-Markovian Dynamics  }
+
+%%%%%%%%%%%%%%%%%%%%
+
+
+
+\newpage
+
+\section{References}
+%\printbibliography[heading=none]
+
+\bibliographystyle{unsrt}
+\bibliography{sample}
+
+%\begin{thebibliography}{X}
+
+%\bibitem{u} Universidad Nacional de Colombia.
+%\end{thebibliography}  
+
+\newpage
+%  \section{Firma.}
+
+%\chapter{ \textbf{Firma del proponente }}
+%\\[20pt]
+
+
+%\makebox[2.5in]{\hrulefill} 
+
+%Nombres y Apellidos\\ 
+
+%\chapter{  \textbf{Firma del director }}
+%\\[20pt]
+
+%\makebox[2.5in]{\hrulefill} 
+
+%Nombres y Apellidos\\
+
+
+
+
+
+
+
+\end{document}

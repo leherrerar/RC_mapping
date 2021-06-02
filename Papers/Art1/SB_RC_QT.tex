@@ -1,0 +1,668 @@
+\documentclass[reprint,aps,onecolumn,pra,notitlepage,nofootinbib]{revtex4-1}
+%------------------------------------------------------------
+%% Begin Preamble
+%------------------------------------------------------------
+%% Language and font encodings
+\usepackage[english]{babel}	% spanish for default (tittles of tables, figures, etc).
+\usepackage[utf8]{inputenc}% utf8 for write with accents directlty from the keyboard: ñ,á,è,...
+\usepackage[T1]{fontenc}	% allows the user to select font encodings (copy, paste, search text)
+\usepackage{lmodern}		% to improvement of the special characters. For example, to copy and paste correctly from the final PDF document.https://es.overleaf.com/project/6026ab0f6b408d7ceab88c98
+
+%% Math writing
+\usepackage{amsmath}
+\usepackage[makeroom]{cancel}		% principal set of math characters of the American Mathematical Society (AMS)
+\usepackage{amsfonts}		% extended set of math characters of the AMS
+\usepackage{amssymb}		% symbols of the AMS
+\usepackage{mathrsfs}		% better appearance for math symbols
+\usepackage{bbm}% bold math
+\usepackage{amsthm}			% to use proof environment
+%\usepackage{dsfont}			% to simbols of matrix symbols (\mathbb{1}$) and mathbfmatrix symbols (\mathds{1})
+
+%% Useful packages
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{verbatim}
+\usepackage{enumerate}
+% adds an optional argument to the enumerate environment
+%\usepackage{caption}		% customize labels of floating environments (figures, tables, etc).
+
+
+\usepackage{mathtools}
+
+\usepackage{xcolor}
+
+% Syntax: \colorboxed[<color model>]{<color specification>}{<math formula>}
+\newcommand*{\colorboxed}{}
+\def\colorboxed#1#{%
+  \colorboxedAux{#1}%
+}
+\newcommand*{\colorboxedAux}[3]{%
+  % #1: optional argument for color model
+  % #2: color specification
+  % #3: formula
+  \begingroup
+    \colorlet{cb@saved}{.}%
+    \color#1{#2}%
+    \boxed{%
+      \color{cb@saved}%
+      #3%
+    }%
+  \endgroup
+}
+
+
+%% Graphics
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{physics}
+
+\addtolength{\oddsidemargin}{-.875in}
+	\addtolength{\evensidemargin}{-.875in}
+	\addtolength{\textwidth}{1.75in}
+
+	\addtolength{\topmargin}{-.875in}
+	\addtolength{\textheight}{1.75in}
+%\newcommand{\bra}[1]{\ensuremath{\left\langle#1\right|}}
+%\newcommand{\ket}[1]{\ensuremath{\left|#1\right\rangle}}
+%\newcommand{\braket}[2]{\ensuremath{\left\langle#1\left|\left. #2 \right\rangle\right.\right.}}
+
+%\usepackage{pstricks}	    % Contain the most of the PSTricks commands.
+%\usepackage{pst-all}		% Contain all the PSTricks commands.
+%\usepackage{pst-node}	    % to define nodes and conexions between themselves.
+%\usepackage{pst-circ}		% to make electric circuits.
+%\usepackage{pst-plot}	    % to 2D plots with data lists or graph of functions.
+%\usepackage{pst-eucl}	    % to geometric forms
+%
+% (it's recommended import the 'graphics' package after 'PSTricks' package).
+%\usepackage{graphics}		% to insert graphs in the document (rotation, scaled, etc).
+%\usepackage{graphicx}		% extends the optional arguments of the 'graphics' package.
+%\usepackage{subfig}		% provides support for the manipulation and reference of small or ‘sub’ figures and tables within a single figure or table environment.
+
+%% Sets page size and margins
+\usepackage[letterpaper,left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm,marginparwidth=1.75cm]{geometry}
+%------------------------------------------------------------
+%% Define theorem-like environments
+%
+\theoremstyle{definition}
+\newtheorem{exercise}{Problem}[section]
+\newtheorem{solution}{Solution}[section]
+%
+\renewcommand{\thesection}{\arabic{section}}
+\numberwithin{equation}{section}
+%
+%------------------------------------------------------------
+%% New definitions
+%
+\allowdisplaybreaks			% allow continue in multiple page the different lines of a equation
+%\spanishdecimal{.}			% the decimal numbers is separated with a dot, not with a comma
+\newcommand{\dbar}{\mathchar'26\mkern-12mu d}			% dbar
+\newcommand{\C}{\mathbb{C}} 							% C to complex numbers
+
+%------------------------------------------------------------
+%% End Preamble
+%------------------------------------------------------------
+\setlength{\marginparwidth}{2cm}
+\begin{document}
+	\title[Caos]{Reproduction of Gernot's example}
+
+%    \author{Oscar David Hernández}
+%    \email{osdhernandezpa@unal.edu.co}
+    \author{Luis Eduardo Herrera}
+    \email{leherrerar@unal.edu.co }
+	\affiliation{Departamento de Física, Universidad Nacional de Colombia, Carrera 30 No.45-03, Bogotá, Colombia.}
+\author{Carlos Viviescas}
+\email{clviviescasr@unal.edu.co }
+\affiliation{Departamento de Física, Universidad Nacional de Colombia, Carrera 30 No.45-03, Bogotá, Colombia.}
+
+\begin{abstract}
+ In this document we reproduce the result for the rc mapping for spin boson model in the dephasing limit   \cite{schaller2020theorie} \url{http://www1.itp.tu-berlin.de/schaller/download/TOQT.pdf}:   
+\end{abstract}
+	
+\maketitle
+%------------------------------------------------------------
+%
+
+\section{Spin-boson model}
+
+We consider a single two-level system linearly coupled to a bosonic bath, 
+\begin{equation}
+H=\frac{\omega}{2} \sigma^{z}+\sum_{k} \frac{t_{k}^{2}}{\omega_{k}} S^{2}+S \sum_{k} t_{k}\left(a_{k}+a_{k}^{\dagger}\right)+\sum_{k} \omega_{k} a_{k}^{\dagger} a_{k}.
+\end{equation}
+Here, $a_{k}$ and $a^{\dagger}_{k}$ are bosonic anihilation and creation operators of the bath mode $k$, with frequency $\omega_{k}$, satisfying $[b_{k},b^{\dagger}_{k'}] = \delta_{kk'} \mathbbm{1}$, and $S$ is the coupling operator acting on the system and accounting for its interaction with all modes of the bath through coupling amplitudes $t_{k}$, which without loss of generality are chosen to be real. In this notes we shall consider the two cases  
+
+
+
+
+
+\section*{The Reaction coordinate map. }
+
+%------------------------------------------------------------
+We will work with a quibt couble to a bosonic bath:
+\begin{equation}
+ H_s= \frac{\omega}{2} \sigma_z    
+\end{equation}
+ 
+ thus, the full hamitonian (systen + interaction + envieroment ) is:
+
+
+
+\begin{equation}
+H=\frac{\omega}{2} \sigma^{z}+\sum_{k} \frac{t_{k}^{2}}{\omega_{k}} S^{2}+S \sum_{k} t_{k}\left(a_{k}+a_{k}^{\dagger}\right)+\sum_{k} \omega_{k} a_{k}^{\dagger} a_{k}
+\end{equation}
+
+
+with coupling operator:
+
+\begin{equation}
+    S=\sigma_z
+\end{equation}
+
+and where the bath is specify by the spectral density, 
+
+\begin{equation}
+J^{(0)}(\omega)=2 \pi \sum_{k}\left|t_{k}\right|^{2} \delta\left(\omega-\omega_{k}\right)=\Gamma \frac{\omega \delta^{7}}{\left[(\omega-\epsilon)^{2}+\delta^{2}\right]^{2}\left[(\omega+\epsilon)^{2}+\delta^{2}\right]^{2}}
+\end{equation}
+
+where $\Gamma$ denotes an overall coupling strength, and for $\epsilon>\delta>0$ the parameter $\epsilon$ describes roughly the position of the maximum and $\delta$ roughly the width around the maximum, as show in the figure: 
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{imagen_2021-02-12_123713.png}
+\caption{Example of the spectral density for $\Gamma \beta=10000, \delta \beta=1, \epsilon \beta=2, \omega \beta=1$}
+\end{figure}
+
+
+We apply the Reaction coordinate mapping
+
+
+\begin{equation}
+H=\frac{\omega}{2} \sigma^{z}+\Omega_{0}\left(b^{\dagger}+\frac{g}{\Omega_{0}} S\right)\left(b+\frac{g}{\Omega_{0}} S\right)+\sum_{k} \Omega_{k}\left(b_{k}^{\dagger}+\frac{h_{k}}{\Omega_{k}}\left(b+b^{\dagger}\right)\right)\left(b_{k}+\frac{h_{k}}{\Omega_{k}}\left(b+b^{\dagger}\right)\right)
+\end{equation}
+
+\begin{equation}
+    H=\frac{\omega}{2} \sigma^{z} +\Omega_0 b ^{\dagger} b  + g \sigma_z \left( b + b ^{\dagger} \right) + \frac{g^2}{\Omega_0} \sigma_z^2 + \sum_k \frac{h_k^2}{\Omega_k} \left( b + b ^{\dagger} \right)^2 + \left( b + b ^{\dagger} \right) \sum_k h_k \left( b_k + b_k ^{\dagger} \right) + \sum_{k} \Omega_k b_k ^{\dagger} b_k
+\end{equation}
+
+where the new coupling and frequencies are given by :
+
+\begin{equation}\Omega_{0}^{2}=\frac{\int_{0}^{\infty} \omega J^{(0)}(\omega) d \omega}{\int_{0}^{\infty} \frac{J^{(0)}(\omega)}{\omega} d \omega}\end{equation}
+
+
+
+\begin{equation}g^{2}=\frac{1}{2 \pi \Omega_{0}} \int_{0}^{\infty} \omega J^{(0)}(\omega) d \omega\end{equation}
+
+and  the new spectral density :
+\begin{equation}
+    J^{(1)}(\omega) = 2 \pi \sum_{k} \abs{h_k}^2 \delta(\omega-\Omega_k)
+\end{equation}
+
+\begin{equation}J^{(1)}(\omega)=\frac{4 g^{2} J^{(0)}(\omega)}{\left[\frac{1}{\pi} \mathcal{P} \int \frac{J(0)\left(\omega^{\prime}\right)}{\omega-\omega^{\prime}} d \omega^{\prime}\right]^{2}+\left[J^{(0)}(\omega)\right]^{2}}\end{equation}
+
+witch for our case is: 
+
+\begin{equation}
+\Omega_{0}^{2}=\frac{\left(\delta^{2}+\epsilon^{2}\right)^{2}}{5 \delta^{2}+\epsilon^{2}}
+\end{equation}
+
+\begin{equation}
+g^{2}=\frac{\Gamma \delta^{4} \sqrt{5 \delta^{2}+\epsilon^{2}}}{64\left(\delta^{2}+\epsilon^{2}\right)^{2}}
+\end{equation}
+
+\begin{equation}
+J^{(1)}(\omega)=\frac{16 \omega \delta^{3} \sqrt{5 \delta^{2}+\epsilon^{2}}}{\omega^{4}+\omega^{2}\left(6 \delta^{2}-2 \epsilon^{2}\right)+\left(5 \delta^{2}+\epsilon^{2}\right)^{2}}
+\end{equation}
+
+ And introducing the supersystem renormalization: 
+$$
+\Omega_{0} \cdot \Delta \equiv \sum_{k} \frac{h_{k}^{2}}{\Omega_{k}}=\frac{1}{2 \pi} \int_{0}^{\infty} \frac{J^{(1)}(\omega)}{\omega} d \omega
+$$
+
+With this we idetify our new suspersystem and residual bath. 
+
+
+
+
+\begin{equation}
+    H_0= \frac{\omega}{2} \sigma_z +  \Omega_0 b ^{\dagger} b +g \sigma_z  \left( b + b ^{\dagger} \right) + \frac{g^2}{\Omega_0} \sigma_z^2 + \Omega_0 \Delta \left( b + b ^{\dagger} \right)^2
+\end{equation}
+
+\begin{equation}
+    H_B= \sum_{k} \Omega_k b_k ^{\dagger} b_k
+\end{equation}    
+
+\begin{equation}
+    H_I= \left( b + b ^{\dagger} \right) \sum_k h_k \left( b_k + b_k ^{\dagger} \right)
+\end{equation}
+%------------------------------------------------------------
+
+
+
+\section*{Our RC Limbland equation}
+
+
+We star the derivation of a master equation for the transformed Hamiltonian with the RC  :
+
+\begin{equation}
+    H_0= \frac{\omega}{2} \sigma_z +  \Omega_0 b ^{\dagger} b +g \sigma_z  \left( b + b ^{\dagger} \right) + \frac{g^2}{\Omega_0} \sigma_z^2 + \Omega_0 \Delta \left( b + b ^{\dagger} \right)^2
+\end{equation}
+
+\begin{equation}
+    H_B= \sum_{k} \Omega_k b_k ^{\dagger} b_k
+\end{equation}    
+
+\begin{equation}
+    H_I= \left( b + b ^{\dagger} \right) \sum_k h_k \left( b_k + b_k ^{\dagger} \right)
+\end{equation}
+
+Notice that $\sigma_z^2= 1$, then this term is a simple shit contribution.In order to derive a master equation we star from the Von Neumann equation for the density matrix of the total system.
+
+\begin{equation}
+    \dot{\rho} = -i \left[ H_0 + H_B + H_I , \rho \right]
+\end{equation}
+
+Now we move to the interaction picture, 
+
+\begin{equation}
+  \boldsymbol{\rho}(t) = e^{i (H_0+H_B) t} \rho e^{-i (H_0+H_B) t},
+\end{equation}
+
+where the bond indicates the interaction picture. In this picture the von Neumann equatio read as follows:
+
+\begin{equation}
+  \dot{\boldsymbol{\rho}}(t) = -i \left[  \mathbf{H_I}(t) ,  \boldsymbol{\rho}(t)\right]
+\end{equation}
+
+Integraitne the eqattion and replacint in itsel, and taking the partial trace over the bath we get:
+
+\begin{equation}
+      \dot{\boldsymbol{\rho}}_0(t) = -i Tr_B \left \lbrace \left[  \mathbf{H_I}(t) ,  \rho(0)\right] \right \rbrace - \int_0 ^t Tr_B \left \lbrace   \left[  \mathbf{H_I}(t) ,  \left[  \mathbf{H_I}(t') ,  \boldsymbol{\rho}(t')\right]]  \right \rbrace dt' 
+\end{equation}
+
+where  $\dot{\boldsymbol{\rho}}_0(t)$ denotes the desisnty matris for the  super system in the interaction picture. 
+
+\begin{equation}
+\rho(0)=\rho_{\mathrm{0}} (0) \otimes \bar{\rho}_{\mathrm{B}}
+\end{equation}
+
+
+\begin{equation}\boldsymbol{
+\rho}(t)=\boldsymbol{\rho}}_0(t) \otimes \bar{\rho}_{\mathbf{B}}
+\end{equation}
+
+\begin{equation}
+ \dot{\boldsymbol{\rho}}_0(t)=-\mathrm{i} \operatorname{Tr}_{\mathrm{B}}\left\{\left[\boldsymbol{H}_{I}(\boldsymbol{t}), \rho(0)\right]\right\}-\int_{0}^{t} \operatorname{Tr}_{\mathrm{B}}\left\{\left[\boldsymbol{H}_{I}(t),\left[\boldsymbol{H}_{I}\left(t^{\prime}\right), \rho_{\mathrm{S}}\left(t^{\prime}\right) \otimes \bar{\rho}_{\mathrm{B}}\right]\right]\right\} d t^{\prime}
+\end{equation}
+
+we write now   the interaction Hamiltonian as: 
+
+\begin{equation}
+\boldsymbol{H}_{I}(t) &=e^{+\mathrm{i}\left(H_{S}+H_{B}\right) t} H_{I} e^{-\mathrm{i}\left(H_{S}+H_{B}\right) t}= e^{+i H_{S} t} A e^{-\mathrm{i} H_{S} t} \otimes e^{+i H_{B} t} B e^{-\mathrm{i} H_{B} t} = \boldsymbol{A}(t) \otimes \boldsymbol{B}(t)
+\end{equation}
+
+where $A= \left( b + b ^{\dagger} \right) $ and $B= \sum_k h_k \left( b_k + b_k ^{\dagger} \right)$. 
+
+Opening the commutators in the integral:
+
+
+\begin{equation}\begin{aligned}
+& \dot{\boldsymbol{\rho}}_0(t)=-\mathrm{i} \left[\boldsymbol{A}(t) \rho_0(0) \operatorname{Tr}\left\{ \boldsymbol{B}(t) \bar{\rho}_{\mathrm{B}}\right\}-\rho_0(0) \boldsymbol{A}(t) \operatorname{Tr}\left\{\bar{\rho}_{\mathrm{B}} \boldsymbol{B}(t)\right\}\right] \\
+&- \int_{0}^{t}\left[\boldsymbol{A}(t)  \boldsymbol{A}\left(t^{\prime}\right) \boldsymbol{\rho_{\mathrm{0}}}\left(t^{\prime}\right) \operatorname{Tr}\left\{\boldsymbol{B}(t) \boldsymbol{B}\left(t^{\prime}\right) \bar{\boldsymbol{\rho}}_{\mathrm{B}}\right\}\right. -\boldsymbol{A}(t) \boldsymbol{\rho}_{\mathrm{0}}\left(t^{\prime}\right) \boldsymbol{A} \left(t^{\prime}\right) \operatorname{Tr}\left\{\boldsymbol{B}(t) \bar{\boldsymbol{\rho}}_{\mathrm{B}} \boldsymbol{B}\left(t^{\prime}\right)\right\} \\
+& -\boldsymbol{A}\left(t^{\prime}\right) \boldsymbol{\rho}_{\mathrm{0}}\left(t^{\prime}\right) \boldsymbol{A}(t) \operatorname{Tr}\left\{\boldsymbol{B}\left(t^{\prime}\right) \bar{\boldsymbol{\rho}}_{\mathrm{B}} \boldsymbol{B}(t)\right\} 
+\left.+\boldsymbol{\rho}_{\mathrm{0}}\left(t^{\prime}\right) \boldsymbol{A}\left(t^{\prime}\right) \boldsymbol{A}(t) \operatorname{Tr}\left\{\bar{\boldsymbol{\rho}}_{\mathrm{B}} \boldsymbol{B}\left(t^{\prime}\right) \boldsymbol{B}(t)\right\}\right] d t^{\prime}
+\end{aligned}\end{equation}
+
+due the Born approximation we also require that the reservoir don't change in time(i.e. is in equilibrium), meaning: 
+
+\begin{equation}\left[H_{B}, \bar{\rho}_{\mathrm{B}}\right]=0\end{equation}
+
+Then, we can assume the bath coupling operator expected value to be 0\footnote{This can always be done by modifying the system Hamiltonian an the interaction operators}:
+
+\begin{equation}\operatorname{Tr}\left\{\boldsymbol{B}(t) \bar{\rho}_{\mathrm{B}}\right\}=0\end{equation}
+
+
+Now using the cyclic properties of the trace, we resume the master equation as: 
+
+\begin{equation}
+\dot{\boldsymbol{\rho}}_0(t)=- \int_{0}^{t} d t^{\prime}\left[C\left(t, t^{\prime}\right)\left[\boldsymbol{A}(t), \boldsymbol{A}\left(t^{\prime}\right) \boldsymbol{\rho}_{\mathrm{0}}\left(t^{\prime}\right)\right]+C\left(t^{\prime}, t\right)\left[\boldsymbol{\rho}_{\mathrm{0}}\left(t^{\prime}\right) \boldsymbol{A}\left(t^{\prime}\right), \boldsymbol{A}(t)\right]\right]\end{equation}\label{Non_markovian_eq}
+
+with the define bath correlation function: 
+
+\begin{equation}C\left(t_{1}, t_{2}\right)=\operatorname{Tr}\left\{\boldsymbol{B}\left(t_{1}\right) \boldsymbol{B}\left(t_{2}\right) \bar{\rho}_{\mathrm{B}}\right\}\end{equation}
+
+
+
+
+\begin{equation}C\left(t_{1}, t_{2}\right)=C\left(t_{1}-t_{2}\right)=\operatorname{Tr}\left\{e^{+i H_{B}\left(t_{1}-t_{2}\right)} B e^{-i H_{B}\left(t_{1}-t_{2}\right)} B \bar{\rho}_{\mathrm{B}}\right\}\end{equation}
+
+\begin{equation}C(\tau)=C^{*}(-\tau)\end{equation}
+
+The equation \ref{Non_markovian_eq} is a integro-differential equation that is non-local in time, also call Non-Markovian master equation, as the density matrix dynamics depend of  his value at previews times. This equation can only be solved in specific cases, when the correlation function has a very simple decay law. To get a local in time master equation we require  the Markov approximation.
+
+Usually when baths have a dense spectrum, the bath correlation function is strongly peaked around zero, meaning that the correlation time of the bath is really small compare to the system, then we can assume the density matrix varies slowly during the correlation time, then  we can replace: 
+
+
+\begin{equation}\rho_{\mathrm{S}}\left(t^{\prime}\right) \rightarrow \rho_{\mathrm{S}}(t) \text { (first Markov approximation) }\end{equation}
+
+This is the fisrt Markov approximation.  
+
+We subsitute $\tau=t-t'$
+
+
+\begin{equation}\begin{aligned}
+\dot{\boldsymbol{\rho}}_0(t) &=-\int_{0}^{t} \operatorname{Tr}_{\mathrm{B}}\left\{\left[\boldsymbol{H}_{I}(t),\left[\boldsymbol{H}_{I}(t-\tau), \boldsymbol{\rho}_{\mathrm{0}}(t) \otimes \bar{\rho}_{\mathrm{B}}\right]\right\} d \tau\right.\\
+&=- \int_{0}^{t}\left\{C(\tau)\left[\boldsymbol{A}(t), \boldsymbol{A}(t-\tau) \boldsymbol{\rho}_{\mathrm{0}}(t)\right]+C(-\tau)\left[\boldsymbol{\rho}_{\mathrm{0}}(t) \boldsymbol{A}(t-\tau), \boldsymbol{A}(t)\right]\right\} d \tau
+\end{aligned}\end{equation}
+
+We extend the integration bounds
+to infinity (second Markov approximation),for the same reasoning: the bath correlation
+functions decay rapidly
+
+\begin{equation}
+t \rightarrow \infty \text { (Second Markov approximation) }
+\end{equation}
+
+
+\begin{equation}
+\dot{\boldsymbol{\rho}}_0(t) = -\int_{0}^{\infty}\left\{C(\tau)\left[\boldsymbol{A}(t), \boldsymbol{A}(t-\tau) \boldsymbol{\rho}_{\mathrm{0}}(t)\right]+C(-\tau)\left[\boldsymbol{\rho}_{\mathrm{0}}(t) \boldsymbol{A}(t-\tau), \boldsymbol{A}(t)\right]\right\} d \tau
+\end{equation}
+
+
+
+where we remeber that $A= \left( b + b ^{\dagger} \right) $ and $B= \sum_k h_k \left( b_k + b_k ^{\dagger} \right)$. This is the Redfield equation. 
+
+
+\begin{equation}\begin{align}
+\dot{\boldsymbol{\rho}}_0(t) = - \int_{0}^{\infty} C(\tau)\left[\boldsymbol{\left( b(t) + b ^{\dagger}(t) \right)}, \left( \boldsymbol{ b(t-\tau) + b ^{\dagger} (t-\tau) }\right) \boldsymbol{\rho}_{\mathrm{0}}(t)\right]+ \\
+C(-\tau)\left[\boldsymbol{\rho}_{\mathrm{0}}(t) \left( \boldsymbol{ b(t-\tau) + b ^{\dagger} (t-\tau) } \right), \boldsymbol{\left( b(t) + b ^{\dagger}(t) \right)}\right] d \tau 
+\end{align}
+\end{equation}
+
+
+
+
+
+
+At this point we can go back to the Shodinger picture to derive a Redfild equation: 
+
+\begin{equation}
+\begin{aligned}
+\dot{\rho}=-\mathrm{i}\left[H_{0}, \rho\right]-\int_{0}^{\infty} C(+\tau)\left[\left(b+b^{\dagger}\right), e^{-\mathrm{i} H_{0} \tau}\left(b+b^{\dagger}\right) e^{+\mathrm{i} H_{0} \tau} \rho(t)\right] d \tau \\
+-\int_{0}^{\infty} C(-\tau)\left[\rho(t) e^{-\mathrm{i} H_{0} \tau}\left(b+b^{\dagger}\right) e^{+\mathrm{i} H_{0} \tau},\left(b+b^{\dagger}\right)\right] d \tau
+\end{aligned}
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Now we work the terms $\boldsymbol{A}(t) = e^{+i H_{S} t} A e^{-\mathrm{i} H_{S} t} = e^{+i H_{S} t} (b+b^{\dagger}) e^{-\mathrm{i} H_{S} t} $, for this we recall the hausdorff lemma formula:
+
+
+\begin{equation}
+\left.e^{A} B e^{-A}=B+[A, B]+\frac{1}{2}[A,[A, B]]+\ldots \frac{1}{n !}[A,[A, \ldots[A, B] . .]+\ldots \ldots
+\end{equation}
+
+where $A= i H_s t $ and $B= b+b^{\dagger} $. For this we calculate the folowing relations: 
+
+\begin{equation}
+    [ b^{\dagger}b ,    b   ] = -b 
+\end{equation}
+
+\begin{equation}
+    [ b^{\dagger}b ,    b ^{\dagger}  ] = b ^{\dagger} 
+\end{equation}
+
+
+
+
+\begin{equation}
+    [ bb ,    b ^{\dagger}  ] = 2b 
+\end{equation}
+
+
+\begin{equation}
+    [ b^{\dagger}b^{\dagger} ,    b  ] = -2b^{\dagger} 
+\end{equation}
+
+\begin{equation}
+    [  b+ b^{\dagger}  ,  -b+ b^{\dagger}   ] = 2
+\end{equation}
+
+\begin{equation}
+    [ \left( b+ b^{\dagger} \right)^2 , \left( -b+ b^{\dagger} \right)  ] = 4\left( b+ b^{\dagger} \right) 
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Then we found:
+
+\begin{equation}
+[A, B] = i \Omega [ b^{\dagger}b , b+b^{\dagger}  ] = i \Omega  \left( -b+b^{\dagger}  \right)  
+\end{equation}
+
+\begin{equation}
+[A,[A, B]]= i  t [  \Omega b^{\dagger}b + g \sigma_z (b+b^{\dagger})  + \Omega \Delta \left( b+ b^{\dagger} \right)^2  , i \Omega  \left( -b+b^{\dagger}  \right)  ] = 
+\end{equation}
+
+\begin{equation}
+    = (it \Omega)^2 \left( b+ b^{\dagger} \right) \left( 1 + 4 \Delta \right) + (it)^2 \Omega 2 g \sigma_z 
+\end{equation}
+
+\begin{equation}
+[A,[A,[A, B]]]=  (it \Omega )^3 (1+4 \Delta) \left(-b + b ^{\dagger})
+\end{equation}
+
+
+\begin{equation}
+[A,[A,[A,[A, B]]]]=  (it \Omega )^4 (1+4 \Delta)^2 \left(b + b ^{\dagger}) + (i t )^4 \Omega^3 2g \sigma_z (1+4\Delta) 
+\end{equation}
+
+we se the reccurent patron and we can write:
+
+
+\begin{equation}
+\underbrace{\left[A,\left[A,\left[\ldots,\left[A \right.\right.\right.\right.}_{n}, b+b^{\dagger}] \ldots]]=\left\{\begin{array}{ll}
+(i t \Omega_{0})^{2 l+1}(1+4 \Delta)^{l}\left(-b+b^{\dagger}\right) & \text { for } n=2 l+1 \\
+( it \Omega_{0})^{2 l}(1+4 \Delta)^{l}\left(b+b^{\dagger}\right)+ (it)^{2l} 2 g \Omega_{o}^{2 l-1}(1+4 \Delta)^{l-1} \sigma_{z} & \text { for } n=2 l
+\end{array}\right.
+\end{equation}
+
+Calling $x=t \Omega_0 $ and $y=(1+ \Delta)$ we can write: 
+
+
+\begin{equation}
+\left.e^{A} B e^{-A}=  b \left( - \sum_{l=0}^{\infty}(i x)^{2 l+1}  \frac{y^{l}}{(2 l+1) !}+\sum_{l=1}^{\infty}(i x)^{2 l}  \frac{y^{l}}{(2 l) !} +1  \right) +  b^{\dagger} \left(  \sum_{l=0}^{\infty}(i x)^{2 l+1}  \frac{y^{l}}{(2 l+1) !}+\sum_{l=1}^{\infty}(i x)^{2 l}  \frac{y^{l}}{(2 l) !} +1  \right)
+\end{equation}
+
+\begin{equation*}
+    + \frac{2 g \sigma_z}{\Omega_0} \sum_{l=1}^{\infty}\frac{(i x)^{2 l} y^{l-1}}{(2 l) !}
+\end{equation*}
+
+
+This series converges, resulting in :
+
+
+\begin{equation}
+\left.e^{A} B e^{-A}=  b \left( -\frac{i \sin (x \sqrt{y})}{\sqrt{y}}+\cos (x \sqrt{y}) \right) +  b^{\dagger} \left( \frac{i \sin (x \sqrt{y})}{\sqrt{y}}+\cos (x \sqrt{y})  \right) +  \frac{2 g \sigma_z}{\Omega_0} \left( \frac{\cos (x \sqrt{y})-1 }{y} \right)
+\end{equation}
+
+
+
+
+
+Now we focus in the specific case where $\Delta=0$ i.e. $y=1$. This means that we are no taken into account the re-normalization quadratic term in the Hamiltonian. Then:
+
+
+\begin{equation}\boldsymbol{A}(t)=\left(b e^{-\mathrm{i} \Omega t}+b^{\dagger} e^{+\mathrm{i} \Omega t}    +  \frac{2 g \sigma_z}{\Omega_0} \left( \cos (\Omega t) -1 \right) \right)\end{equation}
+
+\begin{equation}
+e^{-i H_{s} \tau}\left(b+b^{\dagger}\right) e^{-i H_{s} \tau}=\left(b+\frac{g}{\Omega} \sigma_{z}\right) e^{- i \Omega \tau}+\left(b^{\dagger}+\frac{g}{\Omega} \sigma_{z}\right) e^{i \Omega  \tau }-\frac{2 g}{ \Omega_{0}} \sigma_{z}
+\end{equation}
+
+and
+
+\begin{equation}
+e^{-i H_{s} \tau} b e^{-i H_{s} \tau}=\left(b+\frac{g}{\Omega} \sigma_{z}\right) e^{- i \Omega \tau}-\frac{ g}{ \Omega_{0}} \sigma_{z}
+\end{equation}
+
+
+\begin{equation}
+e^{-i H_{s} \tau}b^{\dagger}\right) e^{-i H_{s} \tau}=   \left( b^{\dagger} + \frac{g}{\Omega} \sigma_{z}\right) e^{i \Omega  \tau }-\frac{ g}{ \Omega_{0}} \sigma_{z}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We follow workin the master equation ins the interaction picture, which takes the form:
+
+\begin{equation}
+\dot{\boldsymbol{\rho}}_0(t)=-\int_{0}^{\infty} C(\tau)\left[\left(b e^{-\mathrm{i} \Omega t}+b^{\dagger} e^{+\mathrm{i} \Omega t}    +  \frac{2 g \sigma_z}{\Omega_0} \cos (\Omega t) \right),\left(b e^{-\mathrm{i} \Omega(t-\tau)}+b^{\dagger} e^{+\mathrm{i} \Omega(t-\tau)}   +  \frac{2 g \sigma_z}{\Omega_0} \cos (\Omega (t-\tau )  )\right) \boldsymbol{\rho}_{\mathrm{0}}(t) \right]+\mathrm{h.c.}\end{equation}
+
+Opening the conmutataror we have:
+
+
+
+\begin{equation}
+    \left[\left(b e^{-\mathrm{i} \Omega t}+b^{\dagger} e^{+\mathrm{i} \Omega t}    +  \frac{2 g \sigma_z}{\Omega_0} \cos (\Omega t) \right),\left(b e^{-\mathrm{i} \Omega(t-\tau)}+b^{\dagger} e^{+\mathrm{i} \Omega(t-\tau)}   +  \frac{2 g \sigma_z}{\Omega_0} \cos (\Omega (t-\tau )  )\right) \boldsymbol{\rho}_{\mathrm{0}}(t) \right]= 
+\end{equation}
+
+
+
+\begin{equation} 
+\begin{align}
+     = e^{-\mathrm{i} \Omega (2t-\tau)} \left[ b, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] + e^{\mathrm{i} \Omega \tau} \left[ b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{2g}{\Omega} \cos (\Omega t ) e^{-\mathrm{i} \Omega (t-\tau)} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+    +  e^{-\mathrm{i} \Omega \tau} \left[ b, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] + e^{\mathrm{i} \Omega (2t -\tau)} \left[ b^{\dagger}, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{2g}{\Omega} \cos (\Omega t ) e^{\mathrm{i} \Omega (t-\tau)} \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+    +  \frac{2g}{\Omega} \cos (\Omega(t-\tau)) e^{-\mathrm{i} \Omega t} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] +  \frac{2g}{\Omega} \cos (\Omega(t-\tau)) e^{\mathrm{i} \Omega t} \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \left( \frac{2g}{\Omega} \right)^2 \cos (\Omega t ) \cos (\Omega (t-\tau) )  \left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] 
+\end{align}
+\end{equation}
+
+Now we write $\cos(\Omega t) = \frac{e^{\mathrm{i} \Omega t} + e^{-\mathrm{i} \Omega t} }{2}$ to idetify the fast oscilating terms: 
+
+
+\begin{equation} 
+\begin{align}
+     &=& e^{-\mathrm{i} \Omega (2t-\tau)} \left[ b, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + e^{\mathrm{i} \Omega (2t -\tau)} \left[ b^{\dagger}, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+     &+& e^{\mathrm{i} \Omega \tau} \left[ b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  +  e^{- \mathrm{i} \Omega \tau} \left[ b, b^{\dagger}  \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   \\
+     &+& \frac{g}{\Omega} e^{\mathrm{i} \Omega \tau} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{- \mathrm{i} \Omega (2t- \tau)} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
+     &+& \frac{g}{\Omega} e^{-\mathrm{i} \Omega (2t -\tau) } \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{- \mathrm{i} \Omega  \tau} \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
+     &+& \frac{g}{\Omega} e^{- \mathrm{i} \Omega \tau} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{- \mathrm{i} \Omega (2t- \tau)} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+     &+& \frac{g}{\Omega} e^{\mathrm{i} \Omega (2t-\tau) } \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{ \mathrm{i} \Omega  \tau} \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
+     &+& \left(\frac{g}{\Omega} \right)^2 \left( e^{\mathrm{i} \Omega (2t-\tau) } + e^{\mathrm{i} \Omega \tau} + e^{- \mathrm{i} \Omega \tau} + e^{-\mathrm{i} \Omega (2t-\tau) }\right) \left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]
+\end{align}
+\end{equation}
+
+
+Not taking in account the fast oscillator terms $e^{\pm  \mathrm{i} \Omega 2t }$(Secular or rotation wave approximation) we get: 
+
+\begin{equation} 
+\begin{align}
+     &=& e^{\mathrm{i} \Omega \tau} \left[ b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  +  e^{- \mathrm{i} \Omega \tau} \left[ b, b^{\dagger}  \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   \\
+     &+& \frac{g}{\Omega} e^{\mathrm{i} \Omega \tau} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   \\
+     &+&   \frac{g}{\Omega} e^{- \mathrm{i} \Omega  \tau} \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
+     &+& \frac{g}{\Omega} e^{- \mathrm{i} \Omega \tau} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   \\
+     &+&  \frac{g}{\Omega} e^{ \mathrm{i} \Omega  \tau} \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
+     &+& \left(\frac{g}{\Omega} \right)^2 \left(  e^{\mathrm{i} \Omega \tau} + e^{- \mathrm{i} \Omega \tau} \right) \left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]
+\end{align}
+\end{equation}
+
+ \begin{equation} 
+ \begin{align}
+ \dot{\boldsymbol{\rho}}_0(t) \approx-\int_{0}^{\infty} C(\tau) e^{-\mathrm{i} \Omega \tau} d \tau\left[b, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t) \right]-\int_{0}^{\infty} C(\tau) e^{+\mathrm{i} \Omega \tau} d \tau\left[b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t) \right]  \\
+ - \frac{g}{\Omega}\int_{0}^{\infty} C(\tau) e^{\mathrm{i} \Omega \tau} d \tau\left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
+ - \frac{g}{\Omega}\int_{0}^{\infty} C(\tau) e^{-\mathrm{i} \Omega \tau} d \tau\left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+ - \frac{g}{\Omega}\int_{0}^{\infty} C(\tau) e^{-\mathrm{i} \Omega \tau} d \tau\left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+ -\frac{g}{\Omega} \int_{0}^{\infty} C(\tau) e^{\mathrm{i} \Omega \tau} d \tau\left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+ - \left(\frac{g}{\Omega} \right)^2  \int_{0}^{\infty} C(\tau) e^{\mathrm{i} \Omega \tau} d \tau\left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   - \left(\frac{g}{\Omega} \right)^2 \int_{0}^{\infty} C(\tau) e^{-\mathrm{i} \Omega \tau} d \tau\left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
++  \mathrm{h} . \mathrm{c}\
+ \end{align}
+ \end{equation}
+
+
+
+
+ we define:
+ 
+ \begin{equation}\Gamma(\omega)=\int_{0}^{\infty} C(\tau) e^{+i \omega \tau} d \tau\end{equation}
+ 
+ \begin{equation}\begin{aligned}
+\dot{\boldsymbol{\rho}}_0(t) =-&  \colorboxed{red}{ \Gamma(-\Omega)\left(b b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)-b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t) b\right)-\Gamma^{*}(-\Omega)\left(\boldsymbol{\rho}_{\mathrm{0}}(t) b b^{\dagger}-b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t) b\right)  }  \\
+&-  \colorboxed{green}{ \Gamma(+\Omega)\left(b^{\dagger} b \boldsymbol{\rho}_{\mathrm{0}}(t)-b \boldsymbol{\rho}_{\mathrm{0}}(t) b^{\dagger}\right)  -\Gamma^{*}(+\Omega)\left(\boldsymbol{\rho}_{\mathrm{0}}(t) b^{\dagger} b-b \boldsymbol{\rho}_{\mathrm{0}}(t) b^{\dagger}\right) }\\
+&-  \colorboxed{blue}{ \frac{g}{\Omega}\Gamma(-\Omega)\left(\sigma_z b^{\dagger}  \boldsymbol{\rho}_{\mathrm{0}}(t)-b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z \right) }  - \colorboxed{yellow}{ \frac{g}{\Omega} \Gamma^{*}(-\Omega)\left(\boldsymbol{\rho}_{\mathrm{0}}(t) b \sigma_z -\sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t) b\right) }\\
+&- \colorboxed{purple}{ \frac{g}{\Omega}\Gamma(+\Omega)\left(\sigma_z b  \boldsymbol{\rho}_{\mathrm{0}}(t)-b \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z \right) }  - \colorboxed{cyan}{ \frac{g}{\Omega} \Gamma^{*}(+\Omega)\left(\boldsymbol{\rho}_{\mathrm{0}}(t) b^{\dagger} \sigma_z -\sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t) b^{\dagger} \right) }\\
+&- \colorboxed{yellow}{ \frac{g}{\Omega}\Gamma(-\Omega)\left(b  \sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t)-\sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t) b \right) } - \colorboxed{blue}{ \frac{g}{\Omega} \Gamma^{*}(-\Omega)\left(\boldsymbol{\rho}_{\mathrm{0}}(t)  \sigma_z b^{\dagger} -b^{\dagger}  \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z \right) }\\
+&- \colorboxed{cyan}{ \frac{g}{\Omega}\Gamma(+\Omega)\left(b^{\dagger}  \sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t)-\sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t) b^{\dagger} \right) } - \colorboxed{purple}{ \frac{g}{\Omega} \Gamma^{*}(+\Omega)\left(\boldsymbol{\rho}_{\mathrm{0}}(t)  \sigma_z b -b  \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z \right)}\\
+&- \colorboxed{black}{ \left(\frac{g}{\Omega} \right)^2  \Gamma(-\Omega)\left(\sigma_z  \sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t)-\sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z \right)  - \left(\frac{g}{\Omega} \right)^2  \Gamma^{*}(-\Omega)\left(\boldsymbol{\rho}_{\mathrm{0}}(t)  \sigma_z \sigma_z -\sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z \right)} \\
+&- \colorboxed{black}{ \left(\frac{g}{\Omega} \right)^2  \Gamma(+\Omega)\left(\sigma_z  \sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t)-\sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z \right)  - \left(\frac{g}{\Omega} \right)^2  \Gamma^{*}(+\Omega)\left(\boldsymbol{\rho}_{\mathrm{0}}(t)  \sigma_z \sigma_z -\sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z \right)} 
+\end{aligned}\end{equation}
+
+we split the real and imaginary part:
+\begin{equation}
+\Gamma(+\Omega)=\frac{1}{2} \gamma+\frac{i}{2} \sigma \text { and } \Gamma(-\Omega)=\frac{1}{2} \bar{\gamma}+\frac{i}{2} \bar{\sigma}\end{equation}
+
+and we  group the terms with same color, resulting in the master equation: 
+
+\begin{equation}
+\begin{aligned}
+\dot{\boldsymbol{\rho}}_0(t) =  \colorboxed{green}{ \gamma\left(b \boldsymbol{\rho}_{\mathrm{0}}(t) b^{\dagger}-\frac{1}{2}\left\{b^{\dagger} b, \boldsymbol{\rho}_{\mathrm{0}}(t)\right\}\right) } +  \colorboxed{red}{ \bar{\gamma}\left(b^{\dagger}\boldsymbol{\rho}_{\mathrm{0}}(t) b-\frac{1}{2}\left\{b b^{\dagger}, \boldsymbol{\rho}_{\mathrm{0}}(t) \right\}\right)} \\
++ \colorboxed{purple}{ \frac{g}{\Omega} \gamma\left(b \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z-\frac{1}{2}\left\{\sigma_z b, \boldsymbol{\rho}_{\mathrm{0}}(t)\right\}\right)}  + \colorboxed{blue}{ \frac{g}{\Omega}  \bar{\gamma}\left(b^{\dagger}\boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z  -\frac{1}{2}\left\{ \sigma_z b^{\dagger}, \boldsymbol{\rho}_{\mathrm{0}}(t) \right\}\right) }  \\
++  \colorboxed{cyan}{ \frac{g}{\Omega} \gamma\left( \sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t) b^{\dagger}-\frac{1}{2}\left\{b^{\dagger} \sigma_z , \boldsymbol{\rho}_{\mathrm{0}}(t)\right\}\right) } + \colorboxed{yellow}{ \frac{g}{\Omega}  \bar{\gamma}\left(\sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t) b-\frac{1}{2}\left\{b \sigma_z , \boldsymbol{\rho}_{\mathrm{0}}(t) \right\}\right) } \\
++  \colorboxed{black}{\left(\frac{g}{\Omega} \right)^2 \gamma\left( \sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z -\frac{1}{2}\left\{\sigma_z \sigma_z , \boldsymbol{\rho}_{\mathrm{0}}(t)\right\}\right) } + \colorboxed{black}{ \left(\frac{g}{\Omega} \right)^2  \bar{\gamma}\left(\sigma_z  \boldsymbol{\rho}_{\mathrm{0}}(t) \sigma_z-\frac{1}{2}\left\{\sigma_z  \sigma_z , \boldsymbol{\rho}_{\mathrm{0}}(t) \right\}\right) } \\
+-\mathrm{i}\left[\frac{\sigma}{2} b^{\dagger} b+\frac{\bar{\sigma}}{2} b b^{\dagger} + \frac{g}{\Omega} \frac{\bar{\sigma}}{2} \sigma_z b^{\dagger} \frac{g}{\Omega} \frac{\bar{\sigma}}{2}  b \sigma_z  +\frac{g}{\Omega} \frac{\sigma}{2} b \sigma_z  + \frac{g}{\Omega} \frac{\sigma}{2}  b^{\dagger} \sigma_z  , \boldsymbol{\rho}_{\mathrm{0}}(t) \right]
+\end{aligned}
+\end{equation}
+
+where we can relate $\gamma=J(\Omega)\left[1+n_{B}(\Omega)\right] $ and $ \bar{\gamma} = J(\Omega) n_{B}(\Omega)$  , with   $n_{B}(\omega)=\left[e^{\beta \omega}-1\right]^{-1}$
+
+Then we find a Master equation of the form: 
+
+\begin{equation}
+\dot{\rho}=\sum_{\alpha, \beta=1}^{N^{2}-1} \gamma_{\alpha \beta}\left(A_{\alpha} \rho A_{\beta}^{\dagger}-\frac{1}{2}\left\{A_{\beta}^{\dagger} A_{\alpha}, \rho\right\}\right)
+\end{equation}
+ 
+where $\bold{A} =(b,b^{\dagger}, \sigma_z) $ and the matrix $\bold{\gamma}$ is: 
+
+\begin{equation}
+\left(\begin{array}{ccc}
+\gamma & 0 & \frac{g \gamma}{\Omega} \\
+0 & \bar{\gamma} & \frac{g \bar{\gamma}}{\Omega} \\
+\frac{g \gamma}{\Omega} & \frac{g \bar{\gamma}}{\Omega} & \frac{g^{2}(\bar{\gamma}+\gamma)}{\Omega^{2}}
+\end{array}\right)
+\end{equation}
+ 
+ 
+ 
+The Lindblad master equation can be written in simpler form: As the dampening matrix $\gamma$ is Hermitian, it can be diagonalized by a suitable unitary transformation $U,$ such that $\sum_{\alpha \beta} U_{\alpha^{\prime} \alpha} \gamma_{\alpha \beta}\left(U^{\dagger}\right)_{\beta \beta^{\prime}}=\delta_{\alpha^{\prime} \beta^{\prime}} \gamma_{\alpha^{\prime}}$ with $\gamma_{\alpha} \geq 0$ representing its non-negative eigenvalues. Using this
+unitary operation, a new set of operators can be defined via $A_{\alpha}=\sum_{\alpha^{\prime}} U_{\alpha^{\prime} \alpha} \bar{L}_{\alpha^{\prime}}$ or $\bar{L}_{\alpha}=\sum_{\alpha^{\prime}} U_{ \alpha \alpha^{\prime} } \bar{A}_{\alpha^{\prime}}$ . Inserting this decomposition in the master equation, we obtain
+$$
+\begin{aligned}
+\dot{\rho} &=\sum_{\alpha, \beta=1} \gamma_{\alpha \beta}\left(A_{\alpha} \rho A_{\beta}^{\dagger}-\frac{1}{2}\left\{A_{\beta}^{\dagger} A_{\alpha}, \rho\right\}\right) \\
+&=\sum_{\alpha^{\prime}, \beta^{\prime}}\left[\sum_{\alpha \beta} \gamma_{\alpha \beta} U_{\alpha^{\prime} \alpha} U_{\beta^{\prime} \beta}^{*}\right]\left(\bar{L}_{\alpha^{\prime}} \rho \bar{L}_{\beta^{\prime}}^{\dagger}-\frac{1}{2}\left\{\bar{L}_{\beta^{\prime}}^{\dagger} \bar{L}_{\alpha^{\prime}}, \rho\right\}\right) \\
+&=\sum_{\alpha} \gamma_{\alpha}\left(\bar{L}_{\alpha} \rho \bar{L}_{\alpha}^{\dagger}-\frac{1}{2}\left\{\bar{L}_{\alpha}^{\dagger} \bar{L}_{\alpha}, \rho\right\}\right)
+\end{aligned}
+$$
+ 
+ 
+ \begin{equation}\rho_{0}(0)=\rho_{S}(0) \otimes \frac{e^{-\beta \Omega\left[b^{\dagger} b\right]}}{Z_{R C}}\end{equation}
+
+
+
+Looking in to the numerical calculation we found out that the Limband equation that reproduce the exact dynamics is :
+
+\begin{equation}
+    \dot{\boldsymbol{\rho}}_0(t) =  \colorboxed{green}{ \gamma\left(b \boldsymbol{\rho}_{\mathrm{0}}(t) b^{\dagger}-\frac{1}{2}\left\{b^{\dagger} b, \boldsymbol{\rho}_{\mathrm{0}}(t)\right\}\right) } +  \colorboxed{red}{ \bar{\gamma}\left(b^{\dagger}\boldsymbol{\rho}_{\mathrm{0}}(t) b-\frac{1}{2}\left\{b b^{\dagger}, \boldsymbol{\rho}_{\mathrm{0}}(t) \right\}\right)}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+We tested with other spectral densities and we get the QT. Need to put it here. 
+
+
+---------------------------------------------
+%
+\bibliographystyle{plain}
+\bibliography{Bib.bib}
+%------------------------------------------------------------
+%
+\end{document}
+

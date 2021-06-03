@@ -110,22 +110,49 @@ Here, $a_{k}$ and $a^{\dagger}_{k}$ are bosonic anihilation and creation operato
 
 In this notes we shall consider the two cases $S = \sigma_{z}$, the pure-dephasing limit, and $S = \sigma_{x}$, the dissipative spin-boson model. For both models $S^2 =1$ and the renormalization becomes a trivial shift.
 
-\subsection{The Reaction coordinate map.}
+\subsection{Reaction coordinate mapping}
 
-We map the system \todo[]{Talk about the Bogoliubov transforms} into a model where a collective mode of the environment is incorporated into an effective system Hamiltonian coupled to a residual environment,
+We map the system \todo[]{Talk about the Bogoliubov transforms} into a model where a collective mode of the environment, denoted by the creation (annihilation) operator $b$ ($b^{\dag}$), is incorporated into an effective system Hamiltonian coupled to a residual environment \todo[]{Luis: please write the appendix explaining how to get the reaction coordinate}(see Appendix~\ref{A:RCmap}). The spin-boson hamiltonian decomposes into
 \begin{equation}
-H=\frac{\omega}{2} \sigma^{z}+\Omega_{0}\left(b^{\dagger}+\frac{g}{\Omega_{0}} S\right)\left(b+\frac{g}{\Omega_{0}} S\right)+\sum_{k} \Omega_{k}\left(b_{k}^{\dagger}+\frac{h_{k}}{\Omega_{k}}\left(b+b^{\dagger}\right)\right)\left(b_{k}+\frac{h_{k}}{\Omega_{k}}\left(b+b^{\dagger}\right)\right),
+H = H_{S} + H_{B} + H_{I},
+\end{equation}
+with a system Hamiltonian
+\begin{equation}
+H=\frac{\omega}{2} \sigma^{z}+\Omega_{0}\left(b^{\dagger}+\frac{g}{\Omega_{0}} S\right)\left(b+\frac{g}{\Omega_{0}} S\right)+ \Omega_{0} \Delta (b + b^{\dag})^{2},
 \end{equation}
 where the coupling strength and the energy of the RC are obtained via
 \begin{equation}
-g^{2}=\frac{1}{2 \pi \Omega_{0}} \int_{0}^{\infty} \omega J_{\text{SB}}(\omega) d \omega,
-\end{equation}
-\begin{equation}
-\Omega_{0}^{2}=\frac{\int_{0}^{\infty} \omega J_{\text{SB}}(\omega) d \omega}{\int_{0}^{\infty} \frac{J_{\text{SB}}(\omega)}{\omega} d \omega}.
+g^{2}=\frac{1}{2 \pi \Omega_{0}} \int_{0}^{\infty} \omega J_{\text{SB}}(\omega) d \omega, 
+\quad
+\Omega_{0}^{2}=\frac{\int_{0}^{\infty} \omega J_{\text{SB}}(\omega) d \omega}{\int_{0}^{\infty} \frac{J_{\text{SB}}(\omega)}{\omega} d \omega},
 \end{equation} 
- 
+and the system renormalization
+\begin{equation}
+\Omega_{0} \cdot \Delta \equiv \sum_{k} \frac{h_{k}^{2}}{\Omega_{k}}=\frac{1}{2 \pi} \int_{0}^{\infty} \frac{J_{\text{SB}}(\omega)}{\omega} d \omega.
+\end{equation}
+The residual environment, with creation (annihilation) operators $b_{k}$ ($b_{k}^{\dag}$),
+\begin{equation}
+H_{B}= \sum_{k} \Omega_{k}\ b_{k}^{\dagger} b_{k}, 
+\end{equation}
+is characterized by its spectral density
+\begin{equation}
+J^{\text{RC}}(\omega) \equiv 2 \pi \sum_{k} h_k^2 \delta(\omega-\Omega_k) = \frac{4 g^{2} J_{\text{SB}}(\omega)}{\left[\frac{1}{\pi} \mathcal{P} \int \frac{J_{\text{SB}}\left(\omega^{\prime}\right)}{\omega-\omega^{\prime}} d \omega^{\prime}\right]^{2}+\left[J_{\text{SB}}(\omega)\right]^{2}},
+\end{equation}
+and couples only to the RC through the interaction 
+\begin{equation}
+H_{I} = (b + b^{\dag}) \sum_{k} h_{k} (b_{k} + b_{k}^{\dagger}). 
+\end{equation}
+
+\subsection{Lindblad master equation and quantum trajectories}
+
+For the sake of simplicity we will not bother to derive a Lindblad master equation but will simply use the Redfield master equation (1.63), but now for the supersystem
+
+We thus derive a Born-Markov master equation for the reduced state of the composite TLS and RC, ρ(t), which captures their exact internal dynamics, while treating the coupling to the residual bath to second order (see Ap- pendix B). This results in the Schro ̈dinger picture master equation [5, 33]:
+
+
 \appendix
-\section{Reaction coordinate}
+\section{The reaction coordinate mapping}
+\label{A:RCmap}
 We will work with a quibt couble to a bosonic bath:
 \begin{equation}
  H_s= \frac{\omega}{2} \sigma_z    
@@ -262,9 +289,9 @@ where the bond indicates the interaction picture. In this picture the von Neuman
 
 Integraitne the eqattion and replacint in itsel, and taking the partial trace over the bath we get:
 
-\begin{equation}
-      \dot{\boldsymbol{\rho}}_0(t) = -i Tr_B \left \lbrace \left[  \mathbf{H_I}(t) ,  \rho(0)\right] \right \rbrace - \int_0 ^t Tr_B \left \lbrace   \left[  \mathbf{H_I}(t) ,  \left[  \mathbf{H_I}(t') ,  \boldsymbol{\rho}(t')\right]]  \right \rbrace dt' 
-\end{equation}
+%\begin{equation}
+%      \dot{\boldsymbol{\rho}}_0(t) = -i Tr_B \left \lbrace \left[  \mathbf{H_I}(t) ,  \rho(0)\right] \right \rbrace - \int_0 ^t Tr_B \left \lbrace   \left[  \mathbf{H_I}(t) ,  \left[  \mathbf{H_I}(t') ,  \boldsymbol{\rho}(t')\right]]  \right \rbrace dt' 
+%\end{equation}
 
 where  $\dot{\boldsymbol{\rho}}_0(t)$ denotes the desisnty matris for the  super system in the interaction picture. 
 
@@ -274,7 +301,7 @@ where  $\dot{\boldsymbol{\rho}}_0(t)$ denotes the desisnty matris for the  super
 
 
 \begin{equation}\boldsymbol{
-\rho}(t)=\boldsymbol{\rho}}_0(t) \otimes \bar{\rho}_{\mathbf{B}}
+\rho}(t)=\boldsymbol{\rho}_0(t) \otimes \bar{\rho}_{\mathbf{B}}
 \end{equation}
 
 \begin{equation}
@@ -284,7 +311,7 @@ where  $\dot{\boldsymbol{\rho}}_0(t)$ denotes the desisnty matris for the  super
 we write now   the interaction Hamiltonian as: 
 
 \begin{equation}
-\boldsymbol{H}_{I}(t) &=e^{+\mathrm{i}\left(H_{S}+H_{B}\right) t} H_{I} e^{-\mathrm{i}\left(H_{S}+H_{B}\right) t}= e^{+i H_{S} t} A e^{-\mathrm{i} H_{S} t} \otimes e^{+i H_{B} t} B e^{-\mathrm{i} H_{B} t} = \boldsymbol{A}(t) \otimes \boldsymbol{B}(t)
+\boldsymbol{H}_{I}(t) =e^{+\mathrm{i}\left(H_{S}+H_{B}\right) t} H_{I} e^{-\mathrm{i}\left(H_{S}+H_{B}\right) t}= e^{+i H_{S} t} A e^{-\mathrm{i} H_{S} t} \otimes e^{+i H_{B} t} B e^{-\mathrm{i} H_{B} t} = \boldsymbol{A}(t) \otimes \boldsymbol{B}(t)
 \end{equation}
 
 where $A= \left( b + b ^{\dagger} \right) $ and $B= \sum_k h_k \left( b_k + b_k ^{\dagger} \right)$. 
@@ -359,11 +386,11 @@ t \rightarrow \infty \text { (Second Markov approximation) }
 where we remeber that $A= \left( b + b ^{\dagger} \right) $ and $B= \sum_k h_k \left( b_k + b_k ^{\dagger} \right)$. This is the Redfield equation. 
 
 
-\begin{equation}\begin{align}
+\begin{align}
 \dot{\boldsymbol{\rho}}_0(t) = - \int_{0}^{\infty} C(\tau)\left[\boldsymbol{\left( b(t) + b ^{\dagger}(t) \right)}, \left( \boldsymbol{ b(t-\tau) + b ^{\dagger} (t-\tau) }\right) \boldsymbol{\rho}_{\mathrm{0}}(t)\right]+ \\
 C(-\tau)\left[\boldsymbol{\rho}_{\mathrm{0}}(t) \left( \boldsymbol{ b(t-\tau) + b ^{\dagger} (t-\tau) } \right), \boldsymbol{\left( b(t) + b ^{\dagger}(t) \right)}\right] d \tau 
 \end{align}
-\end{equation}
+
 
 
 
@@ -386,9 +413,9 @@ At this point we can go back to the Shodinger picture to derive a Redfild equati
 Now we work the terms $\boldsymbol{A}(t) = e^{+i H_{S} t} A e^{-\mathrm{i} H_{S} t} = e^{+i H_{S} t} (b+b^{\dagger}) e^{-\mathrm{i} H_{S} t} $, for this we recall the hausdorff lemma formula:
 
 
-\begin{equation}
-\left.e^{A} B e^{-A}=B+[A, B]+\frac{1}{2}[A,[A, B]]+\ldots \frac{1}{n !}[A,[A, \ldots[A, B] . .]+\ldots \ldots
-\end{equation}
+%\begin{equation}
+%\left.e^{A} B e^{-A}=B+[A, B]+\frac{1}{2}[A,[A, B]]+\ldots \frac{1}{n !}[A,[A, \ldots[A, B] . .]+\ldots \ldots
+%\end{equation}
 
 where $A= i H_s t $ and $B= b+b^{\dagger} $. For this we calculate the folowing relations: 
 
@@ -437,12 +464,12 @@ Then we found:
 \end{equation}
 
 \begin{equation}
-[A,[A,[A, B]]]=  (it \Omega )^3 (1+4 \Delta) \left(-b + b ^{\dagger})
+[A,[A,[A, B]]]=  (i t \Omega )^3 (1+4 \Delta) \left(-b + b ^{\dagger}\right)
 \end{equation}
 
 
 \begin{equation}
-[A,[A,[A,[A, B]]]]=  (it \Omega )^4 (1+4 \Delta)^2 \left(b + b ^{\dagger}) + (i t )^4 \Omega^3 2g \sigma_z (1+4\Delta) 
+[A,[A,[A,[A, B]]]]=  (it \Omega )^4 (1+4 \Delta)^2 \left(b + b ^{\dagger} \right) + (i t )^4 \Omega^3 2g \sigma_z (1+4\Delta) 
 \end{equation}
 
 we se the reccurent patron and we can write:
@@ -458,9 +485,9 @@ we se the reccurent patron and we can write:
 Calling $x=t \Omega_0 $ and $y=(1+ \Delta)$ we can write: 
 
 
-\begin{equation}
-\left.e^{A} B e^{-A}=  b \left( - \sum_{l=0}^{\infty}(i x)^{2 l+1}  \frac{y^{l}}{(2 l+1) !}+\sum_{l=1}^{\infty}(i x)^{2 l}  \frac{y^{l}}{(2 l) !} +1  \right) +  b^{\dagger} \left(  \sum_{l=0}^{\infty}(i x)^{2 l+1}  \frac{y^{l}}{(2 l+1) !}+\sum_{l=1}^{\infty}(i x)^{2 l}  \frac{y^{l}}{(2 l) !} +1  \right)
-\end{equation}
+%\begin{equation}
+%\left.e^{A} B e^{-A}=  b \left( - \sum_{l=0}^{\infty}(i x)^{2 l+1}  \frac{y^{l}}{(2 l+1) !}+\sum_{l=1}^{\infty}(i x)^{2 l}  \frac{y^{l}}{(2 l) !} +1  \right) +  b^{\dagger} \left(  \sum_{l=0}^{\infty}(i x)^{2 l+1}  \frac{y^{l}}{(2 l+1) !}+\sum_{l=1}^{\infty}(i x)^{2 l}  \frac{y^{l}}{(2 l) !} +1  \right)
+%\end{equation}
 
 \begin{equation*}
     + \frac{2 g \sigma_z}{\Omega_0} \sum_{l=1}^{\infty}\frac{(i x)^{2 l} y^{l-1}}{(2 l) !}
@@ -470,9 +497,9 @@ Calling $x=t \Omega_0 $ and $y=(1+ \Delta)$ we can write:
 This series converges, resulting in :
 
 
-\begin{equation}
-\left.e^{A} B e^{-A}=  b \left( -\frac{i \sin (x \sqrt{y})}{\sqrt{y}}+\cos (x \sqrt{y}) \right) +  b^{\dagger} \left( \frac{i \sin (x \sqrt{y})}{\sqrt{y}}+\cos (x \sqrt{y})  \right) +  \frac{2 g \sigma_z}{\Omega_0} \left( \frac{\cos (x \sqrt{y})-1 }{y} \right)
-\end{equation}
+%\begin{equation}
+%\left.e^{A} B e^{-A}=  b \left( -\frac{i \sin (x \sqrt{y})}{\sqrt{y}}+\cos (x \sqrt{y}) \right) +  b^{\dagger} \left( \frac{i \sin (x \sqrt{y})}{\sqrt{y}}+\cos (x \sqrt{y})  \right) +  \frac{2 g \sigma_z}{\Omega_0} \left( \frac{\cos (x \sqrt{y})-1 }{y} \right)
+%\end{equation}
 
 
 
@@ -495,7 +522,7 @@ e^{-i H_{s} \tau} b e^{-i H_{s} \tau}=\left(b+\frac{g}{\Omega} \sigma_{z}\right)
 
 
 \begin{equation}
-e^{-i H_{s} \tau}b^{\dagger}\right) e^{-i H_{s} \tau}=   \left( b^{\dagger} + \frac{g}{\Omega} \sigma_{z}\right) e^{i \Omega  \tau }-\frac{ g}{ \Omega_{0}} \sigma_{z}
+e^{-i H_{s} \tau}b^{\dagger})e^{-i H_{s} \tau}=   \left( b^{\dagger} + \frac{g}{\Omega} \sigma_{z}\right) e^{i \Omega  \tau }-\frac{ g}{ \Omega_{0}} \sigma_{z}
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -515,33 +542,33 @@ Opening the conmutataror we have:
 
 
 
-\begin{equation} 
-\begin{align}
-     = e^{-\mathrm{i} \Omega (2t-\tau)} \left[ b, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] + e^{\mathrm{i} \Omega \tau} \left[ b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{2g}{\Omega} \cos (\Omega t ) e^{-\mathrm{i} \Omega (t-\tau)} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
-    +  e^{-\mathrm{i} \Omega \tau} \left[ b, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] + e^{\mathrm{i} \Omega (2t -\tau)} \left[ b^{\dagger}, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{2g}{\Omega} \cos (\Omega t ) e^{\mathrm{i} \Omega (t-\tau)} \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
-    +  \frac{2g}{\Omega} \cos (\Omega(t-\tau)) e^{-\mathrm{i} \Omega t} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] +  \frac{2g}{\Omega} \cos (\Omega(t-\tau)) e^{\mathrm{i} \Omega t} \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \left( \frac{2g}{\Omega} \right)^2 \cos (\Omega t ) \cos (\Omega (t-\tau) )  \left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] 
-\end{align}
-\end{equation}
+%\begin{equation} 
+%\begin{align}
+%     = e^{-\mathrm{i} \Omega (2t-\tau)} \left[ b, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] + e^{\mathrm{i} \Omega \tau} \left[ b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{2g}{\Omega} \cos (\Omega t ) e^{-\mathrm{i} \Omega (t-\tau)} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+%    +  e^{-\mathrm{i} \Omega \tau} \left[ b, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] + e^{\mathrm{i} \Omega (2t -\tau)} \left[ b^{\dagger}, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{2g}{\Omega} \cos (\Omega t ) e^{\mathrm{i} \Omega (t-\tau)} \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+%    +  \frac{2g}{\Omega} \cos (\Omega(t-\tau)) e^{-\mathrm{i} \Omega t} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] +  \frac{2g}{\Omega} \cos (\Omega(t-\tau)) e^{\mathrm{i} \Omega t} \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \left( \frac{2g}{\Omega} \right)^2 \cos (\Omega t ) \cos (\Omega (t-\tau) )  \left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] 
+%\end{align}
+%\end{equation}
 
 Now we write $\cos(\Omega t) = \frac{e^{\mathrm{i} \Omega t} + e^{-\mathrm{i} \Omega t} }{2}$ to idetify the fast oscilating terms: 
 
 
-\begin{equation} 
-\begin{align}
-     &=& e^{-\mathrm{i} \Omega (2t-\tau)} \left[ b, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + e^{\mathrm{i} \Omega (2t -\tau)} \left[ b^{\dagger}, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
-     &+& e^{\mathrm{i} \Omega \tau} \left[ b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  +  e^{- \mathrm{i} \Omega \tau} \left[ b, b^{\dagger}  \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   \\
-     &+& \frac{g}{\Omega} e^{\mathrm{i} \Omega \tau} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{- \mathrm{i} \Omega (2t- \tau)} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
-     &+& \frac{g}{\Omega} e^{-\mathrm{i} \Omega (2t -\tau) } \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{- \mathrm{i} \Omega  \tau} \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
-     &+& \frac{g}{\Omega} e^{- \mathrm{i} \Omega \tau} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{- \mathrm{i} \Omega (2t- \tau)} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
-     &+& \frac{g}{\Omega} e^{\mathrm{i} \Omega (2t-\tau) } \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{ \mathrm{i} \Omega  \tau} \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
-     &+& \left(\frac{g}{\Omega} \right)^2 \left( e^{\mathrm{i} \Omega (2t-\tau) } + e^{\mathrm{i} \Omega \tau} + e^{- \mathrm{i} \Omega \tau} + e^{-\mathrm{i} \Omega (2t-\tau) }\right) \left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]
-\end{align}
-\end{equation}
+%\begin{equation} 
+%\begin{align}
+%     &=& e^{-\mathrm{i} \Omega (2t-\tau)} \left[ b, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + e^{\mathrm{i} \Omega (2t -\tau)} \left[ b^{\dagger}, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+%     &+& e^{\mathrm{i} \Omega \tau} \left[ b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  +  e^{- \mathrm{i} \Omega \tau} \left[ b, b^{\dagger}  \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   \\
+%     &+& \frac{g}{\Omega} e^{\mathrm{i} \Omega \tau} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{- \mathrm{i} \Omega (2t- \tau)} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
+%     &+& \frac{g}{\Omega} e^{-\mathrm{i} \Omega (2t -\tau) } \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{- \mathrm{i} \Omega  \tau} \left[ \sigma_z, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
+%     &+& \frac{g}{\Omega} e^{- \mathrm{i} \Omega \tau} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{- \mathrm{i} \Omega (2t- \tau)} \left[ b, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
+%     &+& \frac{g}{\Omega} e^{\mathrm{i} \Omega (2t-\tau) } \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  + \frac{g}{\Omega} e^{ \mathrm{i} \Omega  \tau} \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
+%     &+& \left(\frac{g}{\Omega} \right)^2 \left( e^{\mathrm{i} \Omega (2t-\tau) } + e^{\mathrm{i} \Omega \tau} + e^{- \mathrm{i} \Omega \tau} + e^{-\mathrm{i} \Omega (2t-\tau) }\right) \left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]
+%\end{align}
+%\end{equation}
 
 
 Not taking in account the fast oscillator terms $e^{\pm  \mathrm{i} \Omega 2t }$(Secular or rotation wave approximation) we get: 
 
-\begin{equation} 
+
 \begin{align}
      &=& e^{\mathrm{i} \Omega \tau} \left[ b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  +  e^{- \mathrm{i} \Omega \tau} \left[ b, b^{\dagger}  \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   \\
      &+& \frac{g}{\Omega} e^{\mathrm{i} \Omega \tau} \left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   \\
@@ -550,9 +577,9 @@ Not taking in account the fast oscillator terms $e^{\pm  \mathrm{i} \Omega 2t }$
      &+&  \frac{g}{\Omega} e^{ \mathrm{i} \Omega  \tau} \left[ b^{\dagger}, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
      &+& \left(\frac{g}{\Omega} \right)^2 \left(  e^{\mathrm{i} \Omega \tau} + e^{- \mathrm{i} \Omega \tau} \right) \left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]
 \end{align}
-\end{equation}
 
- \begin{equation} 
+
+
  \begin{align}
  \dot{\boldsymbol{\rho}}_0(t) \approx-\int_{0}^{\infty} C(\tau) e^{-\mathrm{i} \Omega \tau} d \tau\left[b, b^{\dagger} \boldsymbol{\rho}_{\mathrm{0}}(t) \right]-\int_{0}^{\infty} C(\tau) e^{+\mathrm{i} \Omega \tau} d \tau\left[b^{\dagger}, b \boldsymbol{\rho}_{\mathrm{0}}(t) \right]  \\
  - \frac{g}{\Omega}\int_{0}^{\infty} C(\tau) e^{\mathrm{i} \Omega \tau} d \tau\left[ \sigma_z, b \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]  \\
@@ -562,7 +589,7 @@ Not taking in account the fast oscillator terms $e^{\pm  \mathrm{i} \Omega 2t }$
  - \left(\frac{g}{\Omega} \right)^2  \int_{0}^{\infty} C(\tau) e^{\mathrm{i} \Omega \tau} d \tau\left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right]   - \left(\frac{g}{\Omega} \right)^2 \int_{0}^{\infty} C(\tau) e^{-\mathrm{i} \Omega \tau} d \tau\left[ \sigma_z, \sigma_z \boldsymbol{\rho}_{\mathrm{0}}(t)  \right] \\
 +  \mathrm{h} . \mathrm{c}\
  \end{align}
- \end{equation}
+
 
 
 

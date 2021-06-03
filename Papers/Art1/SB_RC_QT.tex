@@ -1,144 +1,131 @@
-\documentclass[reprint,aps,onecolumn,pra,notitlepage,nofootinbib]{revtex4-1}
-%------------------------------------------------------------
-%% Begin Preamble
-%------------------------------------------------------------
-%% Language and font encodings
-\usepackage[english]{babel}	% spanish for default (tittles of tables, figures, etc).
-\usepackage[utf8]{inputenc}% utf8 for write with accents directlty from the keyboard: ñ,á,è,...
-\usepackage[T1]{fontenc}	% allows the user to select font encodings (copy, paste, search text)
-\usepackage{lmodern}		% to improvement of the special characters. For example, to copy and paste correctly from the final PDF document.https://es.overleaf.com/project/6026ab0f6b408d7ceab88c98
-
-%% Math writing
-\usepackage{amsmath}
-\usepackage[makeroom]{cancel}		% principal set of math characters of the American Mathematical Society (AMS)
-\usepackage{amsfonts}		% extended set of math characters of the AMS
-\usepackage{amssymb}		% symbols of the AMS
-\usepackage{mathrsfs}		% better appearance for math symbols
-\usepackage{bbm}% bold math
-\usepackage{amsthm}			% to use proof environment
-%\usepackage{dsfont}			% to simbols of matrix symbols (\mathbb{1}$) and mathbfmatrix symbols (\mathds{1})
-
-%% Useful packages
-\usepackage[colorinlistoftodos]{todonotes}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
-\usepackage{verbatim}
-\usepackage{enumerate}
-% adds an optional argument to the enumerate environment
-%\usepackage{caption}		% customize labels of floating environments (figures, tables, etc).
-
-
-\usepackage{mathtools}
-
-\usepackage{xcolor}
-
-% Syntax: \colorboxed[<color model>]{<color specification>}{<math formula>}
-\newcommand*{\colorboxed}{}
-\def\colorboxed#1#{%
-  \colorboxedAux{#1}%
-}
-\newcommand*{\colorboxedAux}[3]{%
-  % #1: optional argument for color model
-  % #2: color specification
-  % #3: formula
-  \begingroup
-    \colorlet{cb@saved}{.}%
-    \color#1{#2}%
-    \boxed{%
-      \color{cb@saved}%
-      #3%
-    }%
-  \endgroup
-}
-
-
-%% Graphics
-\usepackage{float}
-\usepackage{wrapfig}
-\usepackage{colortbl}
-\usepackage{booktabs}
-\usepackage{physics}
-
-\addtolength{\oddsidemargin}{-.875in}
-	\addtolength{\evensidemargin}{-.875in}
-	\addtolength{\textwidth}{1.75in}
-
-	\addtolength{\topmargin}{-.875in}
-	\addtolength{\textheight}{1.75in}
-%\newcommand{\bra}[1]{\ensuremath{\left\langle#1\right|}}
-%\newcommand{\ket}[1]{\ensuremath{\left|#1\right\rangle}}
-%\newcommand{\braket}[2]{\ensuremath{\left\langle#1\left|\left. #2 \right\rangle\right.\right.}}
-
-%\usepackage{pstricks}	    % Contain the most of the PSTricks commands.
-%\usepackage{pst-all}		% Contain all the PSTricks commands.
-%\usepackage{pst-node}	    % to define nodes and conexions between themselves.
-%\usepackage{pst-circ}		% to make electric circuits.
-%\usepackage{pst-plot}	    % to 2D plots with data lists or graph of functions.
-%\usepackage{pst-eucl}	    % to geometric forms
+% ****** Start of file apssamp.tex ******
 %
-% (it's recommended import the 'graphics' package after 'PSTricks' package).
-%\usepackage{graphics}		% to insert graphs in the document (rotation, scaled, etc).
-%\usepackage{graphicx}		% extends the optional arguments of the 'graphics' package.
-%\usepackage{subfig}		% provides support for the manipulation and reference of small or ‘sub’ figures and tables within a single figure or table environment.
+%   This file is part of the APS files in the REVTeX 4.2 distribution.
+%   Version 4.2a of REVTeX, December 2014
+%
+%   Copyright (c) 2014 The American Physical Society.
+%
+%   See the REVTeX 4 README file for restrictions and more information.
+%
+% TeX'ing this file requires that you have AMS-LaTeX 2.0 installed
+% as well as the rest of the prerequisites for REVTeX 4.2
+%
+% See the REVTeX 4 README file
+% It also requires running BibTeX. The commands are as follows:
+%
+%  1)  latex apssamp.tex
+%  2)  bibtex apssamp
+%  3)  latex apssamp.tex
+%  4)  latex apssamp.tex
+%
+\documentclass[%
+%reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose, 
+preprint,
+%preprintnumbers,
+onecolumn,
+notitlepag,
+%nofootinbib,
+%nobibnotes,
+%bibnotes,
+ amsmath,amssymb,
+ aps,
+ pra,
+%prb,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+]{revtex4-2}
 
-%% Sets page size and margins
-\usepackage[letterpaper,left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm,marginparwidth=1.75cm]{geometry}
-%------------------------------------------------------------
-%% Define theorem-like environments
-%
-\theoremstyle{definition}
-\newtheorem{exercise}{Problem}[section]
-\newtheorem{solution}{Solution}[section]
-%
-\renewcommand{\thesection}{\arabic{section}}
-\numberwithin{equation}{section}
-%
-%------------------------------------------------------------
-%% New definitions
-%
-\allowdisplaybreaks			% allow continue in multiple page the different lines of a equation
-%\spanishdecimal{.}			% the decimal numbers is separated with a dot, not with a comma
-\newcommand{\dbar}{\mathchar'26\mkern-12mu d}			% dbar
-\newcommand{\C}{\mathbb{C}} 							% C to complex numbers
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{bbm}%bold symbols
+\usepackage{hyperref}% add hypertext capabilities
+\usepackage[tickmarkheight=0.1cm]{todonotes}
+\usepackage{soul}
+\usepackage{url}
+\usepackage{cleveref}
+\usepackage{natbib}
+\usepackage{showkeys}% shows citation keys	
+\usepackage[draft,inline,nomargin]{fixme} 
+\fxsetup{theme=color} %Para hacer comentarios y resaltarlos con colores.
+\FXRegisterAuthor{cv}{acv}{CV}
 
-%------------------------------------------------------------
-%% End Preamble
-%------------------------------------------------------------
-\setlength{\marginparwidth}{2cm}
+%%% MACROS 
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\ben}{\begin{equation*}}
+\newcommand{\een}{\end{equation*}}
+
+\newcommand{\tr}{\mbox{Tr}} 
+\providecommand{\abs}[1]{\lvert#1\rvert}                                    
+\newcommand{\bra}[1]{\ensuremath{\langle #1 |}}
+\newcommand{\ket}[1]{\ensuremath{| #1 \rangle}}
+\newcommand{\prj}[1]{\ensuremath{| #1 \rangle \langle #1 |}}
+\newcommand{\ovl}[2]{\ensuremath{\langle #1 | #2 \rangle}}
+\newcommand{\matel}[3]{\ensuremath{\langle #1 | #2 | #3 \rangle}}
+\newcommand{\expval}[2]{\ensuremath{\langle{#1}\rangle_{#2}}}
+
+
 \begin{document}
-	\title[Caos]{Reproduction of Gernot's example}
 
-%    \author{Oscar David Hernández}
-%    \email{osdhernandezpa@unal.edu.co}
-    \author{Luis Eduardo Herrera}
-    \email{leherrerar@unal.edu.co }
-	\affiliation{Departamento de Física, Universidad Nacional de Colombia, Carrera 30 No.45-03, Bogotá, Colombia.}
+%\preprint{}
+
+\title[]{Reaction coordinate and quantum trjectories}
+
+\author{Luis Eduardo Herrera}
+\email{leherrerar@unal.edu.co }
+\affiliation{Departamento de Física, Universidad Nacional de Colombia, Carrera 30 No.45-03, Bogotá, Colombia.}
 \author{Carlos Viviescas}
 \email{clviviescasr@unal.edu.co }
 \affiliation{Departamento de Física, Universidad Nacional de Colombia, Carrera 30 No.45-03, Bogotá, Colombia.}
 
 \begin{abstract}
- In this document we reproduce the result for the rc mapping for spin boson model in the dephasing limit   \cite{schaller2020theorie} \url{http://www1.itp.tu-berlin.de/schaller/download/TOQT.pdf}:   
+\todo[inline]{Write the abstract at the end}
 \end{abstract}
 	
 \maketitle
 %------------------------------------------------------------
 %
+\section{Introduction}
+
+\todo[inline]{Write the introduction at the end}
 
 \section{Spin-boson model}
 
-We consider a single two-level system linearly coupled to a bosonic bath, 
+In the first part of the this notes we closely follows Gernot \todo[]{Add a reference to Gernots notes on quantum transport.}
+
+We consider a single two-level system (TLS) linearly coupled to a bosonic environment, 
 \begin{equation}
-H=\frac{\omega}{2} \sigma^{z}+\sum_{k} \frac{t_{k}^{2}}{\omega_{k}} S^{2}+S \sum_{k} t_{k}\left(a_{k}+a_{k}^{\dagger}\right)+\sum_{k} \omega_{k} a_{k}^{\dagger} a_{k}.
+H=\frac{\omega}{2} \sigma_{z}+\sum_{k} \frac{t_{k}^{2}}{\omega_{k}} S^{2}+S \sum_{k} t_{k}\left(a_{k}+a_{k}^{\dagger}\right)+\sum_{k} \omega_{k} a_{k}^{\dagger} a_{k}.
 \end{equation}
-Here, $a_{k}$ and $a^{\dagger}_{k}$ are bosonic anihilation and creation operators of the bath mode $k$, with frequency $\omega_{k}$, satisfying $[b_{k},b^{\dagger}_{k'}] = \delta_{kk'} \mathbbm{1}$, and $S$ is the coupling operator acting on the system and accounting for its interaction with all modes of the bath through coupling amplitudes $t_{k}$, which without loss of generality are chosen to be real. In this notes we shall consider the two cases  
+Here, $a_{k}$ and $a^{\dagger}_{k}$ are bosonic anihilation and creation operators of the environment mode $k$, with frequency $\omega_{k}$, satisfying $[b_{k},b^{\dagger}_{k'}] = \delta_{kk'} \mathbbm{1}$, and $S$ is the coupling operator acting on the system and accounting for its interaction with all modes of the envirionment through coupling amplitudes $t_{k}$, which without loss of generality are chosen to be real. The associated spectral density is then $J_{\text{SB}} = \sum_{k} t_{k}^2 \delta (\omega -  \omega_{k})$.
 
+In this notes we shall consider the two cases $S = \sigma_{z}$, the pure-dephasing limit, and $S = \sigma_{x}$, the dissipative spin-boson model. For both models $S^2 =1$ and the renormalization becomes a trivial shift.
 
+\subsection{The Reaction coordinate map.}
 
-
-
-\section*{The Reaction coordinate map. }
-
-%------------------------------------------------------------
+We map the system \todo[]{Talk about the Bogoliubov transforms} into a model where a collective mode of the environment is incorporated into an effective system Hamiltonian coupled to a residual environment,
+\begin{equation}
+H=\frac{\omega}{2} \sigma^{z}+\Omega_{0}\left(b^{\dagger}+\frac{g}{\Omega_{0}} S\right)\left(b+\frac{g}{\Omega_{0}} S\right)+\sum_{k} \Omega_{k}\left(b_{k}^{\dagger}+\frac{h_{k}}{\Omega_{k}}\left(b+b^{\dagger}\right)\right)\left(b_{k}+\frac{h_{k}}{\Omega_{k}}\left(b+b^{\dagger}\right)\right),
+\end{equation}
+where the coupling strength and the energy of the RC are obtained via
+\begin{equation}
+g^{2}=\frac{1}{2 \pi \Omega_{0}} \int_{0}^{\infty} \omega J_{\text{SB}}(\omega) d \omega,
+\end{equation}
+\begin{equation}
+\Omega_{0}^{2}=\frac{\int_{0}^{\infty} \omega J_{\text{SB}}(\omega) d \omega}{\int_{0}^{\infty} \frac{J_{\text{SB}}(\omega)}{\omega} d \omega}.
+\end{equation} 
+ 
+\appendix
+\section{Reaction coordinate}
 We will work with a quibt couble to a bosonic bath:
 \begin{equation}
  H_s= \frac{\omega}{2} \sigma_z    

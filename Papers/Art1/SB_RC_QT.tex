@@ -136,7 +136,7 @@ H_{B}= \sum_{k} \Omega_{k}\ b_{k}^{\dagger} b_{k},
 \end{equation}
 and is characterized by its spectral density
 \begin{equation}
-J^{(1)}(\omega) \equiv 2 \pi \sum_{k} h_k^2 \delta(\omega-\Omega_k) = \frac{4 g^{2} J_{\text{SB}}(\omega)}{\left[\frac{1}{\pi} \mathcal{P} \int \frac{J_{\text{SB}}\left(\omega^{\prime}\right)}{\omega-\omega^{\prime}} d \omega^{\prime}\right]^{2}+\left[J_{\text{SB}}(\omega)\right]^{2}}.
+J^{(1)}(\omega) \equiv 2 \pi \sum_{k} h_k^2 \delta(\omega-\Omega_k) = \frac{4 g^{2} J^{(0)}(\omega)}{\left[\frac{1}{\pi} \mathcal{P} \int \frac{J^{(0)}\left(\omega^{\prime}\right)}{\omega-\omega^{\prime}} d \omega^{\prime}\right]^{2}+\left[J^{(0)}(\omega)\right]^{2}}.
 \end{equation}
 It couples only to the RC through the interaction hamiltonian
 \begin{equation}
@@ -154,9 +154,41 @@ where $\mathcal{D}[J]\rho \equiv J\rho J^{\dag} - \frac{1}{2} J^{\dag} J \rho - 
 
 Instead of directly solving \eqref{eq:LME} we consider particular diffusive unravelings of it. Assuming a continuous monitoring of the residual environment with perfectly efficiency, the state of the system will evolve conditioned on the measurement record according to the diffusive stochastic master equation
 \begin{equation}
-d\rho_{c} = \mathcal{L}\rho \, dt +  \mathcal{H}[d\xi_{1}\,\sqrt{\gamma} b] \rho +  \mathcal{H}[d\xi_{2}\, \sqrt{\bar{\gamma}} b^{\dag}] \rho,
+d\rho_{c} = \mathcal{L}\rho_{c} \, dt +  \mathcal{H}[d\xi_{1}\,\sqrt{\gamma} b] \rho_{c} +  \mathcal{H}[d\xi_{2}\, \sqrt{\bar{\gamma}} b^{\dag}] \rho_{c},
 \end{equation} 
-where $\mathcal{H}[J] \rho \equiv  J \rho + \rho J^{\dag} - \tr [J \rho + \rho J^{\dag}] \rho$.
+where $\mathcal{H}[J] \rho \equiv  J \rho + \rho J^{\dag} - \tr [J \rho + \rho J^{\dag}] \rho$.  The complex Wiener process $d\boldsymbol{\xi} = (d\xi_{1}, d\xi_{2})^{\top}$ has vanishing ensemble average, $E[d\boldsymbol{\xi}] = 0$, with correlations 
+\begin{equation}
+d\boldsymbol{\xi} d\boldsymbol{\xi}^{\dag} = \mathbbm{1} dt, \quad  d\boldsymbol{\xi} d\boldsymbol{\xi}^{\top} = \mathsf{Y} dt.
+\end{equation}
+Here $\mathbbm{1}$ is the identity matrix and $\mathsf{Y}$ is a $2 \times 2$ complex symmetric matrix. Physical choices of $\mathsf{Y}$ are restricted by the condition that the $4 \times 4$ correlation matrix $U$ for the real vector $(\text{Re}\, d\boldsymbol{\xi} ,\text{Im} d\boldsymbol{\xi} )^{\top}$,
+\be
+\mathsf{U} = \frac{1}{2} \begin{pmatrix} \mathbbm{1} + \mathrm{Re}\mathsf{Y} & \mathrm{Im}\mathsf{Y}  \\ \mathrm{Im}\mathsf{Y} & \mathbbm{1} - \mathrm{Re}\mathsf{Y}  \end{pmatrix},
+\ee
+is positive definite. Associated with each unraveling is the measurement record upon which the evolution of $\rho_{c}$ is conditioned,  represented by the  the complex currents
+\begin{equation}
+\mathbf{y} \, dt  = 
+\begin{pmatrix}
+\langle \sqrt{\gamma}b + \mathsf{Y}_{11} \sqrt{\gamma}b^{\dag} +  \mathsf{Y}_{12} \sqrt{\bar{\gamma}} b \rangle \\
+\langle \sqrt{\bar{\gamma}}b^{\dag} + \mathsf{Y}_{21} \sqrt{\gamma}b^{\dag} +  \mathsf{Y}_{22} \sqrt{\bar{\gamma}} b \rangle
+\end{pmatrix} dt +
+ d\boldsymbol{\xi}
+\end{equation}
+where each component represents a specific detection event.
+
+We now turn to the application of our ideas to two specific cases.
+
+\section{Applications}
+
+We now turn to the application of our ideas to two specific cases. 
+
+\cite{IlesSmith:2014db}
+
+\subsection{Pure dephasing}
+
+In this section we consider 
+
+Let us take a two-level system, or qubit, described by the Pauli spin operator σz, and model the environment as a collection of bosonic field modes. In practice, such fields can yield an appropriate effective description even if the actual environment looks quite differently, in particular if the environmental coupling is a sum of many small contributions.2 What is fairly non-generic in the present model is the type of coupling between system and environment, which is taken to commute with the system Hamiltonian.
+
 
 \appendix
 \section{The reaction coordinate mapping}
@@ -167,7 +199,7 @@ where $\mathcal{H}[J] \rho \equiv  J \rho + \rho J^{\dag} - \tr [J \rho + \rho J
 
 %
 \bibliographystyle{plain}
-\bibliography{Bib.bib}
+\bibliography{SB_RC_QT_bib}
 %------------------------------------------------------------
 %
 \end{document}

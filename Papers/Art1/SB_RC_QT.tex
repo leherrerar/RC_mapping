@@ -71,6 +71,7 @@ notitlepag,
 \newcommand{\ovl}[2]{\ensuremath{\langle #1 | #2 \rangle}}
 \newcommand{\matel}[3]{\ensuremath{\langle #1 | #2 | #3 \rangle}}
 \newcommand{\expval}[2]{\ensuremath{\langle{#1}\rangle_{#2}}}
+
 \begin{document}
 %\preprint{}
 \title[]{Reaction coordinate and quantum trjectories}
@@ -93,10 +94,11 @@ notitlepag,
 In the first part of the this notes we closely follows Gernot \todo[]{Add a reference to Gernots notes on quantum transport.}
 We consider a single two-level system (TLS) linearly coupled to a bosonic environment, 
 \begin{equation}
+\label{eq:H_SB}
 H = \frac{\omega}{2} \sigma_{z}+\sum_{k} \frac{t_{k}^{2}}{\omega_{k}} S^{2}+S \sum_{k} t_{k}\left(a_{k}+a_{k}^{\dagger}\right)+\sum_{k} \omega_{k} a_{k}^{\dagger} a_{k}.
 \end{equation}
 Here, $a_{k}$ and $a^{\dagger}_{k}$ are bosonic anihilation and creation operators of the environment mode $k$, with frequency $\omega_{k}$, satisfying $[b_{k},b^{\dagger}_{k'}] = \delta_{kk'} \mathbbm{1}$, and $S$ is the coupling operator acting on the system and accounting for its interaction with all modes of the envirionment through coupling amplitudes $t_{k}$, which without loss of generality are chosen to be real. The environment spectral density is then $J^{(0)} = \sum_{k} t_{k}^2 \delta (\omega -  \omega_{k})$.
-In this notes we shall consider the two cases $S = \sigma_{z}$, the pure-dephasing limit, and $S = \sigma_{x}$, the dissipative spin-boson model. For both models $S^2 =1$ and the renormalization becomes a trivial shift.
+
 \subsection{Reaction coordinate mapping}
 We map the system \todo[]{Talk about the Bogoliubov transforms} into a model where a collective mode of the environment, the reaction coordinate (RC), denoted by the creation (annihilation) operator $b$ ($b^{\dag}$), is incorporated into an effective system Hamiltonian coupled to a residual environment \todo[]{Luis: please write the appendix explaining how to get the reaction coordinate}(see Appendix~\ref{A:RCmap}). The spin-boson hamiltonian decomposes into
 \begin{equation}
@@ -159,11 +161,23 @@ is positive definite. Associated with each unraveling is the measurement record 
 where each component represents a specific detection event.
 We now turn to the application of our ideas to two specific cases.
 \section{Applications}
-We now turn to the application of our ideas to two specific cases. 
-\cite{IlesSmith:2014db}
+To provide concrete examples we now turn to the application of our ideas to two specific cases.  We first consider the pure diffusing limit, $S = \sigma_{z}$,\todo[]{put here some relevant points here.} and conclude with the dissipative spin-boson model, $S = \sigma_{x}$. \todo[]{put here some relevant points here.} For both models $S^2 =1$ and the renormalization term in \eqref{eq:H_SB} becomes a trivial shift. We take an ohmic spectral density $J^{(1)}(w) = \gamma \omega e^{- \omega / \Lambda}$ for the residual environment, which in the limit $\Lambda \to \infty$ corresponds to the spin-boson spectral density (see \eqref{eq:J0toJ1})
+\begin{equation}
+\label{eq:J0DL} 
+J^{(0)}(\omega) = \frac{ \alpha \omega_c \omega}{(\omega_c - \frac{\omega \omega_c}{\Omega_{0}} )^2 + \omega^2 },
+\end{equation}
+with $\alpha =  4 g^2 / \Omega_{0}$ and $\omega_c = \Omega_{0} / \gamma$. Notice that in the overdamped limit, $\Omega_{0} \ll \gamma$,  spectral density \eqref{eq:J0DL} is of the Drude-Lorentz form \cite{IlesSmith:2014db}, which allows us to benchmark our results against data attained from the numerically exact HEOM.
+
+\todo[inline]{We should select a space of parameters in a given region. The paper of Thoss might be a reference to look for this.}
+
 \subsection{Pure dephasing}
-In this section we consider 
-Let us take a two-level system, or qubit, described by the Pauli spin operator σz, and model the environment as a collection of bosonic field modes. In practice, such fields can yield an appropriate effective description even if the actual environment looks quite differently, in particular if the environmental coupling is a sum of many small contributions.2 What is fairly non-generic in the present model is the type of coupling between system and environment, which is taken to commute with the system Hamiltonian.
+
+Possible things to look at:
+\begin{itemize}
+\item Results for $T \neq 0$. 
+\item Components of the reduce density for $\rho_{00}$ and $\rho_{01}$ 
+
+
 \appendix
 \section{The reaction coordinate mapping}
 \label{A:RCmap}
@@ -201,7 +215,7 @@ The distinction is made with respect $b_1$ because this mode will be selected as
     u_{kq} = \frac{1}{2} \left( \sqrt{ \frac{\omega_k}{\Omega_q}} + \sqrt{ \frac{\Omega_q}{\omega_k}}  \right) \Lambda_{kq}, \hspace{2cm}  v_{kq} = \frac{1}{2} \left( \sqrt{ \frac{\omega_k}{\Omega_q}} - \sqrt{ \frac{\Omega_q}{\omega_k}}  \right) \Lambda_{kq},
 \label{orthogonal}
 \end{equation}
-where $\omega_k$ and $\Omega_k$} are real valued and the $\Lambda_{kq}$ satisfy
+where $\omega_k$ and $\Omega_k$ are real valued and the $\Lambda_{kq}$ satisfy
 
 \begin{equation}
     \sum_q \Lambda_{kq} \Lambda_{k'q} = \delta_{k,k'}
@@ -432,7 +446,7 @@ For the evolution of the creation and annihilation operator we have:
 \end{equation}
 
 
-Now we take the Fourier Transform $\mathfrak{F} [...] = \int [...] \exp{+izt} \; dt $ with the conventios $\mathfrank{I} z > 0 $, leading to an algebraic problem. We recall the properties of the fourrien tranform of a time derivaives, and the convolution theorem: 
+Now we take the Fourier Transform $\mathcal{F} [...] = \int [...] \exp{+izt} \, dt $ with the conventios $\mathcal{I} z > 0 $, leading to an algebraic problem. We recall the properties of the fourrien tranform of a time derivaives, and the convolution theorem: 
 
 \begin{equation}
 \mathfrak{F} [\dot{A}]   =   \int \frac{dA(t)}{d t}  e^{izt} dt =iz A(z)
@@ -548,8 +562,8 @@ W\left(\omega+\mathrm{i} 0^{+}\right) &=\lim _{\epsilon \rightarrow 0^{+}} \frac
 \end{equation}
 
 where $\mathcal{P}$ stand for the Cauchy principal value of the integral. Writing  \eqref{relation SD} in term of the  Cauchy transformation: 
-
 \begin{equation}
+\label{eq:J0toJ1}
 -\frac{1}{2} W^{(0)}\left(z-z^{\prime}\right)=\frac{2 g^{2}}{\frac{\left(z-z^{\prime}\right)^{2}}{\Omega_{0}}-\Omega_{0}-\frac{2}{\pi} \int_{0}^{\infty} \frac{J^{(1)}(\omega)}{\omega} d \omega+W^{(1)}\left(z-z^{\prime}\right)}
 \end{equation}
 
@@ -629,10 +643,10 @@ Integrating the equation formally we found:
 replacing in itself, and taking the partial trace over the bath we get:
 
 \begin{equation}
-      \dot{\boldsymbol{\rho}}_0(t) = -i Tr_B \left \lbrace \left[  \mathbf{H_I}(t) ,  \rho(0)\right] \right \rbrace - \int_0 ^t Tr_B \left \lbrace   \left[  \mathbf{H_I}(t) ,  \left[  \mathbf{H_I}(t') ,  \boldsymbol{\rho}(t')\right]]  \right \rbrace dt' 
+\dot{\boldsymbol{\rho}}_0(t) = -i  \tr_{B} \left\{\left[  \mathbf{H_I}(t) ,  \rho(0)\right] \right\} - \int_0 ^t \tr_B  \left\{ [ \mathbf{H_I}(t), [  \mathbf{H_I}(t') ,  \boldsymbol{\rho}(t') ]] \right\} 
 \end{equation}
 
-where  $\dot{\boldsymbol{\rho}}_0(t)$ denotes the density matrix for the  super system in the interaction picture.  Now we perform the 1th Born approximation, witch allow as to write the state of the system as: 
+where  $\dot{\boldsymbol{\rho}}_0(t)$ denotes the density matrix for the  super system in the interaction picture.  Now we perform the first Born approximation, witch allow as to write the state of the system as: 
 
 \begin{equation}
 \rho(0)=\rho_{\mathrm{0}} (0) \otimes \bar{\rho}_{\mathrm{B}}
@@ -655,15 +669,12 @@ where $Z= \operatorname{Tr} \left\{ e^{- \beta H_B} \right\}$ is the partition f
 
 
 We look further into the fist term of equation above:
-
-\begin{equation}
 \begin{align}
  \dot{\boldsymbol{\rho}}_0(t)=
 -\mathrm{i} \sum_{\alpha}\left[\boldsymbol{A}_{\boldsymbol{\alpha}}(t) \rho_0(0) \operatorname{Tr}\left\{\boldsymbol{B}_{\boldsymbol{\alpha}}(t) \bar{\rho}_{\mathrm{B}}\right\}-\rho_0(0)  \boldsymbol{A}_{\boldsymbol{\alpha}}(t) \operatorname{Tr}\left\{\bar{\rho}_{\mathrm{B}} \boldsymbol{B}_{\boldsymbol{\alpha}}(t)\right\}\right] \\
 -\int_{0}^{t} \operatorname{Tr}_{\mathrm{B}}\left\{\left[\boldsymbol{H}_{I}(t),\left[\boldsymbol{H}_{I}\left(t^{\prime}\right), \boldsymbol{ \rho_{0}}\left(t^{\prime}\right) \otimes \bar{\rho}_{\mathrm{B}}\right]\right]\right\} d t^{\prime}   
-\end{align}
 \label{RD1}
- \end{equation}
+\end{align}
 
 
 
@@ -706,7 +717,6 @@ Now we return to equation \eqref{RD1}:
 
 
 witch using the cyclic properties of the trace, the master equation reduce to: 
-
 \begin{equation}
 \begin{aligned}
 \dot{\boldsymbol{\rho}}_0(t) &=  -i \left[ \boldsymbol{A}_1(t) , \rho_0(0) \right] -\sum_{\alpha \beta} \int_{0}^{t} d t^{\prime}\left[C_{\alpha \beta}\left(t, t^{\prime}\right)\left[\boldsymbol{A}_{\boldsymbol{\alpha}}(t), \boldsymbol{A}_{\boldsymbol{\beta}}\left(t^{\prime}\right) \boldsymbol{\rho}_{\mathbf{S}}\left(t^{\prime}\right)\right] \\
@@ -905,9 +915,6 @@ griten in Limbland form:
  where $\mathcal{D}[J]\rho \equiv J\rho J^{\dag} - \frac{1}{2} J^{\dag} J \rho - \frac{1}{2}  \rho J^{\dag} J \rho$ and, we can  relate $\gamma=J(\Omega)\left[1+n_{B}(\Omega)\right] $ and $ \bar{\gamma} = J(\Omega) n_{B}(\Omega)$  , with   $n_{B}(\omega)=\left[e^{\beta \omega}-1\right]^{-1}$. 
 
 
-
-
-%
 %\bibliographystyle{plain}
-%\bibliography{SB_RC_QT_bib}
+\bibliography{SB_RC_QT_bib}
 \end{document}
